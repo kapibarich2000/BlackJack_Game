@@ -1,6 +1,6 @@
-class Game {
+class BlackJackGame{
 public:
-    int Start(){
-        return 7;
+    void Start(){
+
     }
 };

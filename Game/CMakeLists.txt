@@ -3,6 +3,6 @@ project(Game)
 
 SET(CMAKE_CXX_STANDARD 11) # Установили стандарт языка с++ 11
 
-add_library(Game Game.h Game.cpp ) # Создали статическую библиотеку
+add_library(Game Game.cpp Game.h) # Создали статическую библиотеку
 
 target_include_directories(Game PUBLIC .) #Добавления путей поиска заголовков

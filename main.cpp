@@ -1,9 +1,9 @@
 #include <iostream>
-//#include <Game.h>
-
-using namespace std;
+#include <Game.h>
 
 int main() {
-    cout<<"Hello";
+    BlackJackGame game;
+    game.Start();
+
     return 0;
 }
