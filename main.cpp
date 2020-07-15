@@ -4,6 +4,5 @@
 int main() {
     BlackJackGame game;
     game.Start();
-
     return 0;
 }

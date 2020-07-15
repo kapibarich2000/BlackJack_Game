@@ -6,3 +6,4 @@ SET(CMAKE_CXX_STANDARD 11) # Установили стандарт языка с
 add_library(Hand Hand.cpp Hand.h) # Создали статическую библиотеку
 
 target_include_directories(Hand PUBLIC .) #Добавления путей поиска заголовков
+target_link_libraries(Hand iCardGame)

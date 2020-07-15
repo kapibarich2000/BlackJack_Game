@@ -1,22 +1,22 @@
+#pragma once
 #include <Cards.h>
 #include <Dealer.h>
 #include <Hand.h>
 #include <Player.h>
-
-#pragma once
+#include <vector>
 
 
 class BlackJackGame{
-    int Numbers_of_players=0;
+    std::vector<BlackJack_Player> Players;
+    BlackJack_Dealer Dealre;
 
-    void CreatePlayer(){}
-    void CreateDealer(){}
-    void CreateDeck(){}
+    BlackJack_Player CreatePlayer(int Money);
+    BlackJack_Dealer CreateDealer(int Money);
+    void CreateDeckPile();
     void ConnectParticipant(){}
     void DisconnectParticipant(){}
 
 public:
-    void Start(){
+    void Start();
 
-    }
 };

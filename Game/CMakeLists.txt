@@ -11,6 +11,7 @@ add_subdirectory(Cards)
 add_subdirectory(Dealer)
 add_subdirectory(Hand)
 add_subdirectory(Player)
+add_subdirectory(iCardGame)
 
 target_link_libraries(Game Cards) #Линкуемся
 target_link_libraries(Game Dealer)

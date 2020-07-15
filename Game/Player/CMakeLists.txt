@@ -6,3 +6,5 @@ SET(CMAKE_CXX_STANDARD 11) # Установили стандарт языка с
 add_library(Player Player.cpp Player.h) # Создали статическую библиотеку
 
 target_include_directories(Player PUBLIC .) #Добавления путей поиска заголовков
+target_link_libraries(Player iCardGame)
+target_link_libraries(Player Dealer)
