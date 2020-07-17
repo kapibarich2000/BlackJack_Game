@@ -1,8 +1,14 @@
 #include <iostream>
 #include <Game.h>
 
-int main() {
+void  startSinglePlayerGame(){
     BlackJackGame game;
-    game.Start();
+    BlackJack_Player Player(100);
+    game.addPlayer(&Player);
+    game.StartGame();
+}
+
+int main() {
+    startSinglePlayerGame();
     return 0;
 }
