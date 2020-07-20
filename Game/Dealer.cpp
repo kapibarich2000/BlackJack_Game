@@ -15,7 +15,9 @@ int const BlackJack_Dealer::showMoney() {
     return this->_Money;
 }
 
-
+BlackJack_DeckPile *BlackJack_Dealer::retPointonDeck() {
+   return _DeckPile;
+}
 
 
 

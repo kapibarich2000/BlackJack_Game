@@ -16,18 +16,18 @@ char const BlackJack_Player:: Hit_or_Stand() {
     return choice;
 }
 
-int BlackJack_Player::Make_Bet() {
+void BlackJack_Player::Make_Bet() {
     int Bet;
     std::cout<<"You have: "<<_Money<<"units"<<std::endl;
     std::cout<<"Your bet: ";
     std::cin>>Bet;
     while (Bet<=0||Bet>_Money){
         std::cout<<"Please make a correct bet"<<std::endl;
-        std::cout<<"Your bet: ";
+        std::cout<<"Your bet:  ";
         std::cin>>Bet;
     }
     this->_Money-=Bet;
-    return Bet;
+     _Bets=Bet;
 }
 
 const int BlackJack_Player::showMoney() {return this->_Money;}

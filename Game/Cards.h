@@ -19,15 +19,18 @@ private:
     std::vector<Card> _Deck_of_cards;
 public:
     BlackJack_Deck();
-    void Refresh();
     Card moveCard();
-    void push_back(Card card);
-    int size();
+   // void push_back(Card card);
+    virtual int size();
+    virtual Card & operator[](int i);
 };
 
-class  BlackJack_DeckPile : public BlackJack_Deck{
+class  BlackJack_DeckPile : public BlackJack_Deck, public Card {
 private:
-   std::vector<Card> Deck_of_cards;
+    std::vector<Card> _Deck_of_cards;
 public:
     BlackJack_DeckPile();
+    int size() override;
+    Card & operator[](int i) override ;
+
 };

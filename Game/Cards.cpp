@@ -1,7 +1,6 @@
 #include <iostream>
 #include <string>
 #include "Cards.h"
-#include <ctime>
 
 enum class eValue {
     Two, // 0
@@ -116,14 +115,7 @@ BlackJack_Deck::BlackJack_Deck() {
     }
 }
 
-void BlackJack_Deck::Refresh() {    //  Тасование Фишера-Йетса
-    srand(time(NULL));
-    int j;
-    for (int i = _Deck_of_cards.size(); i > 1; i--)    {
-        j = rand() % (i + 1);
-        std::swap(_Deck_of_cards[j], _Deck_of_cards[i]);
-    }
-}
+
 
 Card BlackJack_Deck::moveCard() {
     Card card = _Deck_of_cards[_Deck_of_cards.size()-1];
@@ -135,6 +127,18 @@ int BlackJack_Deck::size(){
     return _Deck_of_cards.size();
 }
 
+Card &BlackJack_Deck::operator[](int i) {
+    return _Deck_of_cards[i];
+}
+
+
+int BlackJack_DeckPile::size(){
+    return _Deck_of_cards.size();
+}
+
+Card &BlackJack_DeckPile::operator[](int i) {
+    return _Deck_of_cards[i];
+}
 //void BlackJack_Deck::push_back(Card card){
 //    Deck_of_cards.push_back(card);
 //}
@@ -146,7 +150,7 @@ BlackJack_DeckPile::BlackJack_DeckPile() {
         {
             for (int j = 0; j <= 3; j++)
             {
-                Deck_of_cards.push_back(Card(i, j));
+                _Deck_of_cards.push_back(Card(i, j));
             }
         }
     }

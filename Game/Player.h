@@ -4,7 +4,7 @@
 
 class BlackJack_Player: public IPlayer {
     int _Money;
-
+    int _Bets;
 public:
     std::string _Name;
     Hand _Hand;
@@ -14,7 +14,7 @@ public:
 
     const int showMoney() override ;
 
-    int Make_Bet();
+    void Make_Bet();
     char const Hit_or_Stand();
 
     //bool Double();
