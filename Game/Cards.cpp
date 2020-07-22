@@ -4,14 +4,14 @@
 
 enum class eValue {
     Two, // 0
-    Three,
-    Four,
-    Five,
-    Six,    // 5
+    Three,//1
+    Four,//2
+    Five,//3
+    Six,    // 4
     Seven,
     Eight,
     Nine,
-    Ten, // 9
+    Ten, // 8
     Jack,
     Queen,
     King,
@@ -27,10 +27,10 @@ enum class eSuit{
 
 
 int Card::getValue(){
-    if (eValue <=9){
+    if (eValue <=8){
         return eValue + 2;
     }
-    else if (eValue ==13){
+    else if (eValue ==12){
         return 11;
     }
     else{
@@ -122,12 +122,18 @@ Card BlackJack_Deck::moveCard() {
     _Deck_of_cards.pop_back();
     return card;
 }
+Card BlackJack_DeckPile::moveCard() {
+    //Card card = _Deck_of_cards[_Deck_of_cards.size()-1];
+    Card card = _Deck_of_cards.back();
+    _Deck_of_cards.pop_back();
+    return card;
+}
 
 int BlackJack_Deck::size(){
     return _Deck_of_cards.size();
 }
 
-Card &BlackJack_Deck::operator[](int i) {
+Card &BlackJack_Deck::operator[](int i) {  // !!!!
     return _Deck_of_cards[i];
 }
 
@@ -136,7 +142,7 @@ int BlackJack_DeckPile::size(){
     return _Deck_of_cards.size();
 }
 
-Card &BlackJack_DeckPile::operator[](int i) {
+Card &BlackJack_DeckPile::operator[](int i) { // !!!!
     return _Deck_of_cards[i];
 }
 //void BlackJack_Deck::push_back(Card card){

@@ -14,7 +14,7 @@ public:
     Card(): eValue(0), eSuit(0){};
 };
 
-class BlackJack_Deck{
+class BlackJack_Deck: public Card{
 private:
     std::vector<Card> _Deck_of_cards;
 public:
@@ -25,12 +25,13 @@ public:
     virtual Card & operator[](int i);
 };
 
-class  BlackJack_DeckPile : public BlackJack_Deck, public Card {
+//class  BlackJack_DeckPile : public BlackJack_Deck, public Card {
+class  BlackJack_DeckPile: public Card{
 private:
     std::vector<Card> _Deck_of_cards;
 public:
     BlackJack_DeckPile();
-    int size() override;
-    Card & operator[](int i) override ;
-
+    int size();
+    Card & operator[](int i);
+    Card moveCard();
 };

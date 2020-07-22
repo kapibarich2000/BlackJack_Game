@@ -5,7 +5,7 @@ void Hand::setCard(Card card) {
     _inHand.push_back(card);
 }
 
-int Hand::getAllValue(){
+int Hand::getValue(){
     int value=0;
     int ace=0;
     for (int i = 0; i < _inHand.size(); ++i) {
@@ -19,9 +19,14 @@ int Hand::getAllValue(){
     return  value;
 }
 
+int Hand::getValue(int n){
+    return _inHand[n].getValue();
+}
+
+
 Card Hand::getCardFromDeck(BlackJack_DeckPile* _DeckPile) {
     Card card = _DeckPile->moveCard();
-   // _inHand.pop_back();
+   // _inHand.pop_back(); there is in move Card
     return card;
 }
 
@@ -43,16 +48,24 @@ void Hand::showCardsValue() {
     }
 }
 
-void Hand::Refresh(BlackJack_DeckPile*  _Deck_of_cards) {    //  Тасование Фишера-Йетса
+void Hand::Refresh(BlackJack_DeckPile& Deck_of_cards) {    //  Тасование Фишера-Йетса
     std::srand(time(NULL));
     int j;
     Card TempCard;
-    for (int i = _Deck_of_cards->size()-1; i > 1; i--)    {
+    for (int i = Deck_of_cards.size()-1; i > 1; i--)    {
         j = std::rand() % (i + 1);
-        TempCard=_Deck_of_cards[j];
-        _Deck_of_cards[j]=_Deck_of_cards[i];
-        _Deck_of_cards[i]=TempCard; // ошибка
-       // std::swap(_Deck_of_cards[j], _Deck_of_cards[i]);
+        TempCard=Deck_of_cards[j];
+        Deck_of_cards[j]=Deck_of_cards[i];
+        Deck_of_cards[i]=TempCard;
+       //std::swap(_Deck_of_cards[j], _Deck_of_cards[i]);
     }
+}
+
+void Hand::ClearCards() {
+    _inHand.clear();
+}
+
+int Hand::getNumberOfCards() {
+    return _inHand.size();
 }
 

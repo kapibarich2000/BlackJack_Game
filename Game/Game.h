@@ -11,6 +11,7 @@ class BlackJackGame{
 private:
     std::vector<BlackJack_Player*> _Players;
     BlackJack_DeckPile _DeckPile;
+
 //    void ConnectParticipant();
 //    void DisconnectPlayers(int id);
 
@@ -22,7 +23,7 @@ public:
     void addPlayer(BlackJack_Player* player){
         _Players.push_back(player);
     }
-
     void StartGame();
 
+     BlackJack_DeckPile getNewDeckPile();
 };
