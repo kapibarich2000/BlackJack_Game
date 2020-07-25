@@ -23,7 +23,6 @@ int Hand::getValue(int n){
     return _inHand[n].getValue();
 }
 
-
 Card Hand::getCardFromDeck(BlackJack_DeckPile* _DeckPile) {
     Card card = _DeckPile->moveCard();
    // _inHand.pop_back(); there is in move Card
@@ -39,6 +38,8 @@ void Hand::showCardsName() {
 void Hand::showCardsName(int n) {
    std::cout<<this->_inHand[n].getName()<<"  ";
 }
+
+
 void Hand::showCardsValue(int n) {
         std::cout<<this->_inHand[n].getValue();
 }
@@ -48,7 +49,8 @@ void Hand::showCardsValue() {
     }
 }
 
-void Hand::Refresh(BlackJack_DeckPile& Deck_of_cards) {    //  Тасование Фишера-Йетса
+
+void Hand::Refresh(BlackJack_DeckPile& Deck_of_cards) {    //  Fischer-Yates Shuffle
     std::srand(time(NULL));
     int j;
     Card TempCard;
@@ -57,7 +59,6 @@ void Hand::Refresh(BlackJack_DeckPile& Deck_of_cards) {    //  Тасовани�
         TempCard=Deck_of_cards[j];
         Deck_of_cards[j]=Deck_of_cards[i];
         Deck_of_cards[i]=TempCard;
-       //std::swap(_Deck_of_cards[j], _Deck_of_cards[i]);
     }
 }
 

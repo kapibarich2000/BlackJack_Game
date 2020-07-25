@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.16)
+﻿cmake_minimum_required(VERSION 3.16)
 project(Game)
 
 SET(CMAKE_CXX_STANDARD 11) # Установили стандарт языка с++ 11
@@ -7,11 +7,6 @@ add_library(Game Game.cpp Game.h) # Создали статическую биб
 
 target_include_directories(Game PUBLIC .) #Добавления путей поиска заголовков
 
-#add_subdirectory(Cards)
-#add_subdirectory(Dealer)
-#add_subdirectory(Hand)
-#add_subdirectory(Player)
-#add_subdirectory(iCardGame)
 
 add_library(Cards Cards.cpp Cards.h) # Создали статическую библиотеку
 target_include_directories(Cards PUBLIC .) #Добавления путей поиска заголовков
@@ -32,6 +27,8 @@ target_include_directories(iCardGame PUBLIC .) #Добавления путей 
 
 target_link_libraries(Dealer Cards)
 target_link_libraries(Cards iCardGame)
+target_link_libraries(Dealer iCardGame)
+target_link_libraries(Player iCardGame)
 target_link_libraries(Game Cards) #Линкуемся
 target_link_libraries(Game Dealer)
 target_link_libraries(Game Hand)

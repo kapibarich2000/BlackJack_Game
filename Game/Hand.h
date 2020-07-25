@@ -3,12 +3,13 @@
 #include <iCardGame.h>
 #include <vector>
 
-class Hand: public IHand {
+class Hand{
 public:
     void setCard(Card card);
-    int getValue(int n) override;
+
+    int getValue(int n);
     int getValue();
-    void _makeBets(){}
+
     Card getCardFromDeck(BlackJack_DeckPile* _DeckPile);
     void showCardsName(int n);
     void showCardsName();

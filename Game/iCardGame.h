@@ -1,19 +1,25 @@
 #pragma once
 #include <Cards.h>
-
-class IHand { // interface of Hand
-protected:
-public:
-    virtual int getValue(int n)=0;
-};
+#include <string>
 
 class IPlayer { // interface of player
 public:
-    virtual const int showMoney()=0;
-    //virtual void Make_Bet()=0;
-//    Hand _Hand;
+    virtual const double showMoney();
+    virtual const std::string getName();
+    virtual const double getBet();
+    virtual void Make_Bet();
+    void setPrize(double n);
+
+protected:
+    double _Bet;
+    char _Choice;
+    double _Money;
+    std::string _Name;
 };
 
 class IDealer { // interface of Dealer
+protected:
+
 public:
+
 };

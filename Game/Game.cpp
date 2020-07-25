@@ -1,17 +1,6 @@
 #include "Game.h"
 #include <Player.h>
 #include <Dealer.h>
-#include <conio.h>
-
-//BlackJack_Player BlackJackGame::CreatePlayer(int Money) {
-//    return BlackJack_Player(Money);
-//}
-
-//BlackJack_DeckPile* BlackJackGame::CreateDeckPile(){
-//    BlackJack_DeckPile DeckPile;
-//    return &DeckPile;
-//}
-//void CreateDeckPile() {  }
 
 
 BlackJack_DeckPile BlackJackGame::getNewDeckPile() {
@@ -19,6 +8,7 @@ BlackJack_DeckPile BlackJackGame::getNewDeckPile() {
 }
 
 void BlackJackGame::StartGame() {
+
     _PlayersSize=_Players.size();
     std::cout<<"\n\n////  Welcome to the honest world of cards :) ////\n////  BlacK Jack, created by kapibarich2000, greet you ////\n\n";
 
@@ -28,12 +18,12 @@ void BlackJackGame::StartGame() {
     _Dealer._Hand.Refresh(_DeckPile);
     _Dealer.setDeckPile(&_DeckPile);
 
-    char choice='s';
+    char choice='c';
     while (choice!='e') {
         std::cout<<"Dealer have: "<<_Dealer.showMoney()<<"$\n\n";
 
         for (int i = 0; i < _PlayersSize; ++i) {
-            std::cout << _Players[i]->_Name << " make a Bet" << std::endl;
+            std::cout << _Players[i]->getName() << " make a Bet" << std::endl;
             _Players[i]->Make_Bet();
         }
 
@@ -55,68 +45,80 @@ void BlackJackGame::StartGame() {
         std::cout<<")"<<"\n";
 
         for (int i = 0; i < _PlayersSize; ++i) {
-            std::cout<<_Players[i]->_Name<<" have:  ";
+            std::cout << _Players[i]->getName() << " have:  ";
             _Players[i]->_Hand.showCardsName();
-            std::cout<<"(";
-            std::cout<<_Players[0]->_Hand.getValue();
-            std::cout<<")\n\n";
+            std::cout << "(";
+            std::cout << _Players[0]->_Hand.getValue();
+            std::cout << ")\n\n";
+        }
 
-            if (_Players[i]->_Hand.getValue()==21){
-                _Players[i]->_isBlackJack=true;
-                break;
+        if(_Dealer._Hand.getValue(1)==10){
+            std::cout<<"Dealer check your second card:"<<std::endl;
+            if (_Dealer._Hand.getValue()==21){
+                std::cout<<"Dealer have BlackJack\n"<<std::endl;
+                _Dealer._isBlackJack=true;
             }
-            // Blackjack is assigned after the first deals
-
-            if (_Dealer._Hand.getValue(1)==11){
-                _Players[i]->setChoice(4);
-                if (_Dealer._Hand.getValue()==21) _Dealer._isBlackJack=true;
+            else{
+                std::cout<<"Continue...\n"<<std::endl;
             }
+        }
 
-            else if(_Dealer._Hand.getValue(1)==10){
-                std::cout<<"Dealer check your second card:"<<std::endl;
-                if (_Dealer._Hand.getValue()==21){
-                    std::cout<<"Dealer have BlackJack\n"<<std::endl;
-                    _Dealer._isBlackJack=true;
-                }
-                else{
-                    std::cout<<"Continue...\n"<<std::endl;
+        if (_Dealer._Hand.getValue(1)==11) std::cout<<"Dealer has ace:"<<std::endl;
+
+        //  First, each player will make a choice of action, then the dealer show magic
+
+       for (int i = 0; i < _PlayersSize; ++i) {
+           if (_Dealer._isBlackJack) break;
+
+           if (_Players[i]->_Hand.getValue() == 21) { // Blackjack is assigned after the first deals
+               std::cout << _Players[i]->getName() << ", you have BlackJack\n\n";
+               _Players[i]->_isBlackJack = true;
+           }
+
+           if (_Dealer._Hand.getValue(1) == 11) { //When the dealer has an ACE open, the player can make insurance
+               _Players[i]->setChoice(11);
+               if (_Players[i]->getChoice() == 'i') _Players[i]->setInsurance();
+
+           }
+           else if (!(_Players[i]->_isBlackJack)) _Players[i]->setChoice(3);
+
+           if (_Players[i]->getChoice() == 'p') break;
+       }
+
+        if (_Dealer._Hand.getValue(1)==11) {
+            std::cout<<"Dealer check your second card:"<<std::endl;
+            if (_Dealer._Hand.getValue()==21){
+                std::cout<<"Dealer has BlackJack"<<std::endl;
+                _Dealer._isBlackJack=true;
+            }
+            else{
+                std::cout<<"Dealer dont't has BlackJack\n";
+                std::cout<<"Your insurance bet burned out\n\n"; // Сгорает страховка !!
+                for (int i = 0; i < _PlayersSize; ++i) {
+                    _Dealer.TakeInsurance(*_Players[i]);
                     _Players[i]->setChoice(3);
                 }
             }
-            else if(_Players[i]->_isBlackJack){
-                break;
-            }
-            else{
-                _Players[i]->setChoice(3);
-            }
+        }
 
-            // May be Insert something into choice() ?
+        for (int i = 0;i<_PlayersSize; ++i) {
+            if(_Dealer._isBlackJack) break;
 
-            if(_Players[i]->getChoice()=='p') break;
-            else if(_Dealer._isBlackJack) break;
-
-            else if(_Players[i]->getChoice()=='i'){
-                _Players[i]->setInsurance();
-                if (_Dealer._Hand.getValue()!=21){
-                    std::cout<<"Dealer check your second card:"<<std::endl;
-                    std::cout<<"Dealer dont't have BlackJack\n\n";
-                    std::cout<<"Your insurance bet has been burned out\n\n";
-                }
-                _Players[i]->setChoice(3);
+            else if(_Players[i]->getChoice()=='e') {
+                std::cout<<"Игрок: "<<_Players[i]->getName()<<" выключил игру !\n\n";
+                exit(1);
             }
 
-            else if(_Players[i]->getChoice()=='e') exit(1);
-
-            else if(_Players[i]->getChoice()=='s') break;
+            else if(_Players[i]->getChoice()=='s') continue;
             else if (_Players[i]->getChoice()=='d') _Players[i]->Make_Double();
 
-            std::cout<<_Players[i]->_Name<<" takes another card...\n\n";
+
+            std::cout<<_Players[i]->getName()<<" takes another card...\n\n";
 
             do{
-
                 _Players[i]->_Hand.setCard(_Dealer._Hand.getCardFromDeck(_Dealer.retPointonDeck()));
 
-                std::cout<<_Players[i]->_Name<<" have: ";
+                std::cout<<_Players[i]->getName()<<" have: ";
                 _Players[i]->_Hand.showCardsName();
                 std::cout<<"(";
                 std::cout<<_Players[0]->_Hand.getValue();
@@ -131,6 +133,9 @@ void BlackJackGame::StartGame() {
             while(_Players[i]->getChoice()!='s'&&_Players[i]->_Hand.getValue()<21&&_Players[i]->getChoice()!='d');
         }
 
+      // ////////////////////////////////// }
+
+        // Dealer deals yourself
         if (!(_Dealer._isBlackJack)){
             std::cout<<"\nDealer deals yourself ...\n"<<std::endl;
             while (_Dealer._Hand.getValue()<17){

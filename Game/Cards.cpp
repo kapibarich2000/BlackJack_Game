@@ -123,7 +123,6 @@ Card BlackJack_Deck::moveCard() {
     return card;
 }
 Card BlackJack_DeckPile::moveCard() {
-    //Card card = _Deck_of_cards[_Deck_of_cards.size()-1];
     Card card = _Deck_of_cards.back();
     _Deck_of_cards.pop_back();
     return card;

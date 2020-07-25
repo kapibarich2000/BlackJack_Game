@@ -3,18 +3,14 @@
 #include <iostream>
 #include <Cards.h>
 
-BlackJack_Dealer::BlackJack_Dealer(int Money) {
-    this->_Money=Money;
+BlackJack_Dealer::BlackJack_Dealer(double Money){
+    _Money=Money;
     _isBlackJack=false;
     _isBust=false;
 };
 
 void BlackJack_Dealer::setDeckPile(BlackJack_DeckPile* DeckPile){
     this->_DeckPile=DeckPile;
-}
-
-int const BlackJack_Dealer::showMoney() {
-    return this->_Money;
 }
 
 BlackJack_DeckPile *BlackJack_Dealer::retPointonDeck() {
@@ -34,6 +30,8 @@ double BlackJack_Dealer::givePrize(BlackJack_Player& Player) {
         _Money-=Player.getBet();
         return Player.getBet()*2;
     }
+    // Если у тебя BlackJack и у диллера туз,
+    // ты можешь застрохавать свой black jack от проигрыша, или подождать или попросить выплаты
 
     else if(Player._isBust||this->_isBust){
         if (this->_isBust){
@@ -52,46 +50,25 @@ double BlackJack_Dealer::givePrize(BlackJack_Player& Player) {
     else if(Player._isBlackJack&&!(this->_isBlackJack)){
         std::cout<<"Your prize 3:2 from the bid : "<<Player.getBet()*3/2<<"$"<<std::endl; // Make bet: 0,5 \ 1 \ 5 \ 10 \ 20 \ 50 \ 100
         _Money-=Player.getBet()*3/2;
+        if (Player.getInsurance()){
+            std::cout<<"But you lose your Insurance: "<<Player.getInsurance()<<std::endl;
+            _Money+=Player.getInsurance();
+        }
         return Player.getBet()*5/2;
     }
 
     else if (this->_isBlackJack){
-        if (Player._isBlackJack){
-            std::cout<<Player._Name<<"  "<<"Dealer and You have BlackJack"<<std::endl;
-            if(Player.getInsurance()==0) {
-                std::cout<<"You return your "<<Player.getBet()<<"$"<<std::endl;
-                return Player.getBet();
-            }
-            else{
-                std::cout<<"You return your "<<Player.getBet()<<"$"<<std::endl;
-                std::cout<<"And lost your insurance"<<Player.getBet()<<"$"<<std::endl;
-                _Money+=Player.getBet()/3;
-                return Player.getBet()/3*2;
-            }
+        if (Player.getInsurance()!=0) {
+            std::cout << "You return your Insurance in a 2:1 ratio: " << Player.getInsurance()*3 << "$" << std::endl;
+            return Player.getInsurance()*3;
         }
         else{
-            std::cout<<"Dealer have BlackJack"<<std::endl;
-            if(Player.getInsurance()==0) {
-                std::cout<<"You lost your Bet "<<Player.getBet()<<"$"<<std::endl;
+                std::cout<<"You lost your "<<Player.getBet()<<"$"<<std::endl;
                 _Money+=Player.getBet();
-            }
-            else{
-                std::cout<<"You return your Insurance in a 2:1 ratio: "<<Player.getInsurance()*3<<"$"<<std::endl;
-                std::cout<<"And lost your Bet "<<Player.getBet()<<"$"<<std::endl;
-                return Player.getInsurance()*3;
-            }
+                return 0;
         }
     }
-    else if(this->_isBust){
-        std::cout<<"You won: "<<Player.getBet();
-        _Money-=Player.getBet();
-        return Player.getBet()*2;
-    }
-    else if(Player._isBust){
-        std::cout<<"You have bust!\n"<<"You lost: "<<Player.getBet();
-        _Money+=Player.getBet();
-        return 0;
-    }
+
     else if(Player._Hand.getValue()==this->_Hand.getValue()){
         std::cout<<"Stay with your own PUSH. Returned: "<<Player.getBet()<<"$";
         return Player.getBet();
@@ -114,7 +91,13 @@ int BlackJack_Dealer::getNumberOfCards() {
     return _Hand.getNumberOfCards();
 }
 
+void BlackJack_Dealer::TakeInsurance(BlackJack_Player& Player) {
+    _Money+=Player.getInsurance();
+}
 
 
-//void Dealer::getStep(const Player *player) {
+
+//const double BlackJack_Dealer::showMoney() {
+//    return _Money;
 //}
+

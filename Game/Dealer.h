@@ -7,7 +7,6 @@
 class BlackJack_Dealer: public IDealer, public IPlayer {
 private:
     BlackJack_DeckPile* _DeckPile;
-    double _Money;
 public:
 
     Hand _Hand;
@@ -15,15 +14,13 @@ public:
     bool _isBust;
 
     BlackJack_Dealer()=delete ;
-    BlackJack_Dealer(int Money);
+    BlackJack_Dealer(double Money);
     BlackJack_DeckPile* retPointonDeck();
     void setDeckPile(BlackJack_DeckPile* DeckPile);
-    int const showMoney() override;
-    void ClearHistory();
     double givePrize(BlackJack_Player& Player);
     int getNumberOfCards();
+    void TakeInsurance(BlackJack_Player& Player);
 
-    //  void setPlayers(std::vector<IPlayer*> Players);
-    //  void startRound();
+    void ClearHistory();
 
 };
