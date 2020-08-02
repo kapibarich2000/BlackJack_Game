@@ -25,7 +25,6 @@ int Hand::getValue(int n){
 
 Card Hand::getCardFromDeck(BlackJack_DeckPile* _DeckPile) {
     Card card = _DeckPile->moveCard();
-   // _inHand.pop_back(); there is in move Card
     return card;
 }
 

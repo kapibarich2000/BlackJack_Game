@@ -10,7 +10,9 @@ private:
 public:
     int getValue();
     std::string getName();
+
     Card(int Value, int Suit): eValue(Value), eSuit(Suit){};
+
     Card(): eValue(0), eSuit(0){};
 };
 

@@ -3,9 +3,7 @@
 
 void  startSinglePlayerGame(){
     BlackJackGame game;
-    BlackJack_Player Player(100,"Ivan");
-    game.addPlayer(&Player);
-    game.StartGame();
+    game.startGame();
 }
 
 int main() {

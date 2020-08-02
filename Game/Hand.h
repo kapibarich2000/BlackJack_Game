@@ -5,6 +5,9 @@
 
 class Hand{
 public:
+
+    Hand() = default;
+
     void setCard(Card card);
 
     int getValue(int n);
@@ -21,6 +24,4 @@ public:
 
 protected:
    std::vector<Card> _inHand;
-
-
 };

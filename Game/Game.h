@@ -5,25 +5,18 @@
 #include <Player.h>
 #include <vector>
 
-
 class BlackJackGame{
 
 private:
-    std::vector<BlackJack_Player*> _Players;
+    std::vector<BlackJack_Player> _Players;
     BlackJack_DeckPile _DeckPile;
-
-//    void ConnectParticipant();
-//    void DisconnectPlayers(int id);
-
-
+    BlackJack_Dealer _Dealer;
+    int _PlayersSize=0;
+    std::vector<int> _ListToDelete;
+    int const _maxPlayers =15;
 public:
-  //  BlackJackGame();
-    int _PlayersSize;
-
-    void addPlayer(BlackJack_Player* player){
-        _Players.push_back(player);
-    }
-    void StartGame();
-
-     BlackJack_DeckPile getNewDeckPile();
+    BlackJackGame();
+    void startGame();
+    void startNewRound();
+    void deletePlayer(std::vector<BlackJack_Player>& _Players, std::vector<int>& _ListToDelete);
 };

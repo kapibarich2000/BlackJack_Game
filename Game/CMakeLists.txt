@@ -1,36 +1,43 @@
 ﻿cmake_minimum_required(VERSION 3.16)
 project(Game)
 
-SET(CMAKE_CXX_STANDARD 11) # Установили стандарт языка с++ 11
+add_library(Game Game.cpp Game.h)
 
-add_library(Game Game.cpp Game.h) # Создали статическую библиотеку
+set_target_properties(
+        Game PROPERTIES
+        CXX_STANDARD 11
+        CXX_STANDARD_REQUIRED ON
+)
 
-target_include_directories(Game PUBLIC .) #Добавления путей поиска заголовков
+target_include_directories(Game PUBLIC .)
+
+#_______________________________________________________________________________________#
+
+add_library(Cards Cards.cpp Cards.h)
+target_include_directories(Cards PUBLIC .)
+
+add_library(Dealer Dealer.cpp Dealer.h)
+target_include_directories(Dealer PUBLIC .)
 
 
-add_library(Cards Cards.cpp Cards.h) # Создали статическую библиотеку
-target_include_directories(Cards PUBLIC .) #Добавления путей поиска заголовков
-
-add_library(Dealer Dealer.cpp Dealer.h) # Создали статическую библиотеку
-target_include_directories(Dealer PUBLIC .) #Добавления путей поиска заголовков
-
-
-add_library(Hand Hand.cpp Hand.h) # Создали статическую библиотеку
-target_include_directories(Hand PUBLIC .) #Добавления путей поиска заголовков
+add_library(Hand Hand.cpp Hand.h)
+target_include_directories(Hand PUBLIC .)
 
 add_library(Player Player.cpp Player.h)
 target_include_directories(Player PUBLIC .)
 
-add_library(iCardGame iCardGame.cpp iCardGame.h) # Создали статическую библиотеку
-target_include_directories(iCardGame PUBLIC .) #Добавления путей поиска заголовков
+add_library(iCardGame iCardGame.cpp iCardGame.h)
+target_include_directories(iCardGame PUBLIC .)
 
+#_______________________________________________________________________________________#
 
 target_link_libraries(Dealer Cards)
 target_link_libraries(Cards iCardGame)
 target_link_libraries(Dealer iCardGame)
 target_link_libraries(Player iCardGame)
-target_link_libraries(Game Cards) #Линкуемся
-target_link_libraries(Game Dealer)
+target_link_libraries(Game Cards)
 target_link_libraries(Game Hand)
 target_link_libraries(Game Player)
 target_link_libraries(Game iCardGame)
+
+#_______________________________________________________________________________________#
