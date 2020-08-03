@@ -87,12 +87,12 @@ void BlackJack_Player:: setChoice(int n) {
     // /////////////////////////////////// Do you want to continue playing? ////////////////////////////////////////////
     else if(n==1){
         std::cout<<getName()<<", you have:"<<_Money<<std::endl
-        <<", do you want to play another round ?\n(c - continue // e - exit)  : ";
+        <<"Do you want to play another round ?\n(c - continue // e - exit)  : ";
         std::cin >> _Choice;
         //  //////////////////////  Checking for _Choice  ///////////////////////////////////////
         while (_Choice != 'c' && _Choice != 'e') {
             std::cout << "! Enter the correct character !" << std::endl;
-            std::cout<<getName()<<", do you want to play another round ?\n(c - continue // e - exit)  : ";
+            std::cout<<getName()<<"Do you want to play another round ?\n(c - continue // e - exit)  : ";
             std::cin >> _Choice;
         }
     }

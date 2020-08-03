@@ -6,7 +6,6 @@
 
  BlackJackGame::BlackJackGame():_Dealer(10000){
 
-
     int money;
     std::string name;
 
@@ -68,7 +67,7 @@ void BlackJackGame::startGame() {
     std::cout<<"\n\n////  Welcome to the honest world of cards :) ////\n"<<
              "////  BlacK Jack, created by kapibarich2000, greet you ////\n\n";
 
-    std::cout<<"Please Enter for control:\nh - for hit, s - for stand, "<<
+    std::cout<<"Please Enter for control:\nh - for hit, s - for stand, d - for double "<<
              "e - for exit, c - for continue, i - for insurance, p - for payment\n\n";
 
 
@@ -101,7 +100,7 @@ void BlackJackGame::startGame() {
             // ////////////////// The player was left without money //////////////////////////////////////
             if (_Players[i].showMoney()==0){
                 std::cout<<_Players[i].getName()<<", you lost all your money"<<std::endl;
-                std::cout << "Player: " << _Players[i].getName() << " leave the game!"<<std::endl;
+                std::cout << "Player: " << _Players[i].getName() << " leave the game!\n"<<std::endl;
                 Sleep(1000); // time delay
                 _ListToDelete.push_back(i);
                 continue;
