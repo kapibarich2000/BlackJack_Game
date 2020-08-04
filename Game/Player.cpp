@@ -143,6 +143,7 @@ int BlackJack_Player::getInsurance() {
 void BlackJack_Player::ClearHistory() {
     _Insurance=0;
     _isBlackJack= false;
+    _isBust= false;
     _Choice='c';
     _Hand.ClearCards();
 }

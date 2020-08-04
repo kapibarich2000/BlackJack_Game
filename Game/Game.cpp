@@ -320,7 +320,7 @@ void BlackJackGame::startNewRound(){
 
         if (_Dealer._Hand.getValue()>21){
             _Dealer.set_isBust();
-            std::cout<<"\n"; // for beauty
+            std::cout<<"\n\n"; // for beauty
         }
     }
 }
