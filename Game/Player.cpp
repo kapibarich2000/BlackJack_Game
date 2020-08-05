@@ -4,7 +4,7 @@
 #include <iCardGame.h>
 
 
-BlackJack_Player::BlackJack_Player(int Money, std::string Name):_Insurance(0),_isBlackJack(false){
+BlackJack_Player::BlackJack_Player(int Money, std::string Name):_Insurance(0),_isBlackJack(false),_isBust(false){
     _Money=Money;
     _Name=Name;
     _Choice='c';
