@@ -16,24 +16,18 @@ public:
     Card(): eValue(0), eSuit(0){};
 };
 
-class BlackJack_Deck: public Card{
-private:
+class BlackJack_Deck{
+protected:
     std::vector<Card> _Deck_of_cards;
 public:
+    void  Refresh();
     BlackJack_Deck();
-    Card moveCard();
-   // void push_back(Card card);
-    virtual int size();
-    virtual Card & operator[](int i);
+    int size();
+    Card pop();
 };
 
-//class  BlackJack_DeckPile : public BlackJack_Deck, public Card {
-class  BlackJack_DeckPile: public Card{
-private:
-    std::vector<Card> _Deck_of_cards;
+
+class  BlackJack_DeckPile: public BlackJack_Deck{
 public:
-    BlackJack_DeckPile();
-    int size();
-    Card & operator[](int i);
-    Card moveCard();
+    BlackJack_DeckPile(int number_of_decks);
 };

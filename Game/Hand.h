@@ -1,6 +1,6 @@
 #pragma once
 #include <Cards.h>
-#include <iCardGame.h>
+//#include <iCardGame.h>
 #include <vector>
 
 class Hand{
@@ -10,15 +10,13 @@ public:
 
     void setCard(Card card);
 
-    int getValue(int n);
-    int getValue();
+    int getFirstCardValue();
+    int getCardsValue();
 
-    Card getCardFromDeck(BlackJack_DeckPile* _DeckPile);
-    void showCardsName(int n);
+    void showFirstCardsName();
     void showCardsName();
-    void showCardsValue(int n);
+    void showFirstCardsValue();
     void showCardsValue();
-    void  Refresh(BlackJack_DeckPile& _DeckPile);
     void ClearCards();
     int getNumberOfCards();
 

@@ -2,32 +2,29 @@
 #include <iCardGame.h>
 #include <Cards.h>
 #include <Hand.h>
-#include <Player.h>
+#include <RealPlayer.h>
 
 class BlackJack_Dealer: public IDealer, public IPlayer {
-private:
-    BlackJack_DeckPile* _DeckPile;
-    bool _isBust;
-    bool _isBlackJack;
-
 public:
 
-    Hand _Hand;
+    BlackJack_Dealer(double Money,BlackJack_DeckPile* DeckPile,std::vector<IBlackJackPlayer*>* Players);
 
-    BlackJack_Dealer(double Money);
 
-    BlackJack_DeckPile* retPointonDeck();
     void setDeckPile(BlackJack_DeckPile* DeckPile);
-    double givePrize(BlackJack_Player* Player);
-    int const getNumberOfCards();
-    void TakeInsurance(BlackJack_Player* Player);
 
-    bool const get_isBust();
-    void set_isBust();
+    double distributionPrize(IBlackJackPlayer* Player);
 
-    bool const get_isBlackJack();
-    void set_isBlackJack();
+    void TakeInsuranceFrom(IBlackJackPlayer* Player); // Доделать надо, забрать еще и у игрока
 
-    void ClearHistory();
+    void ask_aboutContinuing(IBlackJackPlayer* Player); // Зачем ему передавать указатель на игроков если у него уже есть список игроков
 
+    void makePayments ();
+
+    void startNewRound();
+    void allowMakeBets();
+
+    void clearHistory() override;
+
+
+    void dealsCards();
 };

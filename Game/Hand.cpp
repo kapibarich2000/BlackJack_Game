@@ -5,7 +5,7 @@ void Hand::setCard(Card card) {
     _inHand.push_back(card);
 }
 
-int Hand::getValue(){
+int Hand::getCardsValue(){
     int value=0;
     int ace=0;
     for (int i = 0; i < _inHand.size(); ++i) {
@@ -19,13 +19,8 @@ int Hand::getValue(){
     return  value;
 }
 
-int Hand::getValue(int n){
-    return _inHand[n].getValue();
-}
-
-Card Hand::getCardFromDeck(BlackJack_DeckPile* _DeckPile) {
-    Card card = _DeckPile->moveCard();
-    return card;
+int Hand::getFirstCardValue(){
+    return _inHand[0].getValue();
 }
 
 
@@ -34,32 +29,26 @@ void Hand::showCardsName() {
         std::cout<<this->_inHand[i].getName()<<", ";
     }
 }
-void Hand::showCardsName(int n) {
-   std::cout<<this->_inHand[n].getName()<<"  ";
+void Hand::showFirstCardsName() {
+   std::cout<<this->_inHand[0].getName()<<"  ";
 }
 
 
-void Hand::showCardsValue(int n) {
-        std::cout<<this->_inHand[n].getValue();
+void Hand::showFirstCardsValue() {
+        std::cout<<this->_inHand[0].getValue();
 }
 void Hand::showCardsValue() {
     for (int i = 0; i < _inHand.size(); ++i) {
         std::cout << this->_inHand[i].getName() << ", ";
     }
 }
+// Ivan1 have: Ten Hearts, Two Hearts, Ace Hearts, Ace Spades,
+//(24)
+//Ivan1 - have bust !
+
+// Omg  Something wrong!
 
 
-void Hand::Refresh(BlackJack_DeckPile& Deck_of_cards) {    //  Fischer-Yates Shuffle
-    std::srand(time(NULL));
-    int j;
-    Card TempCard;
-    for (int i = Deck_of_cards.size()-1; i > 1; i--)    {
-        j = std::rand() % (i + 1);
-        TempCard=Deck_of_cards[j];
-        Deck_of_cards[j]=Deck_of_cards[i];
-        Deck_of_cards[i]=TempCard;
-    }
-}
 
 void Hand::ClearCards() {
     _inHand.clear();

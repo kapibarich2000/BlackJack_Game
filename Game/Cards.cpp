@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include "Cards.h"
+#include <ctime>
 
 enum class eValue {
     Two, // 0
@@ -117,43 +118,38 @@ BlackJack_Deck::BlackJack_Deck() {
 
 
 
-Card BlackJack_Deck::moveCard() {
-    Card card = _Deck_of_cards[_Deck_of_cards.size()-1];
-    _Deck_of_cards.pop_back();
-    return card;
-}
-Card BlackJack_DeckPile::moveCard() {
-    Card card = _Deck_of_cards.back();
-    _Deck_of_cards.pop_back();
-    return card;
-}
+
 
 int BlackJack_Deck::size(){
     return _Deck_of_cards.size();
 }
 
-Card &BlackJack_Deck::operator[](int i) {  // !!!!
-    return _Deck_of_cards[i];
+
+void BlackJack_Deck::Refresh() { //  Fischer-Yates Shuffle
+
+        std::srand(time(NULL));
+        int j;
+        Card TempCard;
+        for (int i = _Deck_of_cards.size()-1; i > 1; i--)    {
+            j = std::rand() % (i + 1);
+            TempCard=_Deck_of_cards[j];
+            _Deck_of_cards[j]=_Deck_of_cards[i];
+            _Deck_of_cards[i]=TempCard;
+        }
 }
 
-
-int BlackJack_DeckPile::size(){
-    return _Deck_of_cards.size();
+Card BlackJack_Deck::pop() {
+    Card card = _Deck_of_cards[_Deck_of_cards.size()-1];
+    _Deck_of_cards.pop_back();
+    return card;
 }
 
-Card &BlackJack_DeckPile::operator[](int i) { // !!!!
-    return _Deck_of_cards[i];
-}
-//void BlackJack_Deck::push_back(Card card){
-//    Deck_of_cards.push_back(card);
-//}
-
-BlackJack_DeckPile::BlackJack_DeckPile() {
-    for (int k = 0; k < 4; k++)
+BlackJack_DeckPile::BlackJack_DeckPile(int number_of_decks) {
+    for (int k = 0; k < number_of_decks; k++)
     {
         for (size_t i = 0; i <= 12; i++)
         {
-            for (int j = 0; j <= 3; j++)
+            for (size_t j = 0; j <= 3; j++)
             {
                 _Deck_of_cards.push_back(Card(i, j));
             }

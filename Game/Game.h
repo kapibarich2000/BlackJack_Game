@@ -2,21 +2,25 @@
 #include <Cards.h>
 #include <Dealer.h>
 #include <Hand.h>
-#include <Player.h>
+#include <RealPlayer.h>
 #include <vector>
 
 class BlackJackGame{
 
 private:
-    std::vector<BlackJack_Player> _Players;
+
+    std::vector<IBlackJackPlayer*> _Players;
     BlackJack_DeckPile _DeckPile;
     BlackJack_Dealer _Dealer;
-    int _PlayersSize=0;
-    std::vector<int> _ListToDelete;
-    int const _maxPlayers =15;
+    std::vector<std::string> _VectorToDeletePlayers;  // Stores the Names of players to delete //
+
+
 public:
     BlackJackGame();
     void startGame();
-    void startNewRound();
-    void deletePlayer(std::vector<BlackJack_Player>& _Players, std::vector<int>& _ListToDelete);
+
+    void updateDeckPile();
+    void check_to_deletePlayers();
+    void addPlayers(IBlackJackPlayer * human_player);
+    void addAiPlayers();
 };

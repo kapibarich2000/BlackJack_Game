@@ -1,40 +1,81 @@
 #include "iCardGame.h"
 
 // IPlayer   ________________________________________
+IPlayer::IPlayer() {
+    _Name="";
+    _Money=0;
+    _isBlackJack=false;
+    _isBust=false;
+}
+
 const double IPlayer::showMoney() {
     return _Money;
+}
+
+const bool IPlayer::get_isBlackJack() {
+    return _isBlackJack;
+}
+const bool IPlayer::get_isBust() {
+    return _isBust;
 }
 const std::string IPlayer::getName() {
     return _Name;
 }
 
-void IPlayer::Make_Bet(){
-        std::cout<<"You have: "<<_Money<<"$"<<std::endl;
+void IPlayer::set_isBust() {
+    std::cout<<getName()<<" - have bust !"<<std::endl;
+    _isBust= true;
+}
 
-        while (1){
-            std::cout<<"Your bet: ";
-            std::cin>>_Bet;
-            if (std::cin.fail()) { // Проверка на ввод числа
-                std::cin.clear();
-                std::cin.ignore(32767, '\n');
-                continue;
-            }
+void IPlayer::set_isBlackJack() {
+    _isBlackJack=true;
+}
 
-            if (_Bet<=0||_Bet>_Money) // убеждаемся, что nAge является положительным числом
-                continue;
+// IBlackJackPlayer   ________________________________________
 
-            break;
-        }
-        this->_Money-=_Bet;
-    }
+IBlackJackPlayer::IBlackJackPlayer() {
+    _Insurance=0;
+    _Choice='c';
+    _Bet=0;
+}
 
-const double IPlayer::getBet(){
+void IBlackJackPlayer::clearHistory(){
+    _Insurance=0;
+    _isBlackJack= false;
+    _isBust= false;
+    _Choice='c';
+    _Hand.ClearCards();
+}
+
+const char IBlackJackPlayer::getChoice() {
+    return _Choice;
+}
+
+const double IBlackJackPlayer::getBet(){
     return _Bet;
 }
 
-void IPlayer::setPrize(double n) {
+const double IBlackJackPlayer::getInsurance() {
+    return _Insurance;
+}
+
+void IBlackJackPlayer::setPrize(double n) {
     _Money+=n;
 }
+
+void IBlackJackPlayer::setInsurance() {
+        _Insurance = _Bet/2;
+        _Money-=_Insurance;
+        std::cout<<_Name<<", you set an insurance bet: "<<_Insurance<<"\n\n";
+}
+
+void IBlackJackPlayer::setDouble(){
+    std::cout<<_Name<<", you made a double - add another "<<_Bet<<"$"<<" to the bet "<<std::endl;
+    _Money-=_Bet;
+    _Bet+=_Bet;
+}
+
+
 
 // IDealer ________________________________________
 
