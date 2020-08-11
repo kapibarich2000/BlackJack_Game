@@ -8,7 +8,7 @@
 class IPlayer {
 public:
     IPlayer();
-    const double showMoney();
+    const double showMoney() const;
     const std::string getName();
     const bool get_isBlackJack();
     const bool get_isBust();

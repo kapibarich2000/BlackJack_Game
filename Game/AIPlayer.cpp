@@ -78,6 +78,7 @@ void BlackJack_AIPlayer::makeChoice_StayOrLeave() {
     if (_Money<20){
         std::cout << getName()<<" chose Exit\n";
         _Choice='e';
+        _Money=0;
     }
     std::cout << getName()<<" chose Continue\n";
     _Choice='s';

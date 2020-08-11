@@ -8,7 +8,7 @@ IPlayer::IPlayer() {
     _isBust=false;
 }
 
-const double IPlayer::showMoney() {
+const double IPlayer::showMoney()const {
     return _Money;
 }
 

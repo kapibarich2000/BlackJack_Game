@@ -2,6 +2,7 @@
 #include "Game.h"
 #include <RealPlayer.h>
 #include <AIPlayer.h>
+#include <algorithm>
 
 #define number_of_decks_in_DeckPile 4
 
@@ -27,10 +28,14 @@ void BlackJackGame::check_to_deletePlayers(){
         }
         // Do you want to continue playing?
         _Dealer.ask_aboutContinuing(_Players[i]);
-        if (_Players[i]->getChoice()=='e') _VectorToDeletePlayers.push_back(_Players[i]->getName());
+
+        //if (_Players[i]->getChoice()=='e') _VectorToDeletePlayers.push_back(_Players[i]->getName());
     }
 
     // Take each player and check
+
+    _Players.erase(std::remove_if(_Players.begin(),_Players.end(),[](const IBlackJackPlayer& p){return p.showMoney()==0;}));
+
     if (!(_VectorToDeletePlayers.empty())){
         for (int i = _Players.size()-1; i>=0 && !(_VectorToDeletePlayers.empty()) ; --i) {
             for (int j = _VectorToDeletePlayers.size()-1; j >=0 ; --j) {

@@ -133,5 +133,6 @@ void BlackJack_RealPlayer::makeChoice_StayOrLeave() {
     }
     if(_Choice=='e') {
         std::cout <<_Name << " leave the game!"<<std::endl;
+        _Money=0;
     }
 }
