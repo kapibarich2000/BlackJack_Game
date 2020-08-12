@@ -16,8 +16,6 @@ public:
 
     void TakeInsuranceFrom(IBlackJackPlayer* Player); // Доделать надо, забрать еще и у игрока
 
-    void ask_aboutContinuing(IBlackJackPlayer* Player); // Зачем ему передавать указатель на игроков если у него уже есть список игроков
-
     void makePayments ();
 
     void startNewRound();

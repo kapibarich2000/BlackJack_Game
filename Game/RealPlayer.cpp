@@ -21,7 +21,7 @@ BlackJack_RealPlayer::BlackJack_RealPlayer() {
 }
 
 void BlackJack_RealPlayer::makeBet() {
-    std::cout<<"You have: "<<_Money<<"$"<<std::endl;
+    std::cout<<_Name<<", you have: "<<_Money<<"$"<<std::endl;
 
     while (1){
         std::cout<<"Your bet: ";
@@ -123,16 +123,20 @@ void BlackJack_RealPlayer::makeMove() {
     }
 }
 
-void BlackJack_RealPlayer::makeChoice_StayOrLeave() {
-    std::cin >> _Choice;
+char BlackJack_RealPlayer::getChoice_StayOrLeave()const {
+    char choice;
+    std::cout<<"\n"<< getName()<<", you have:"<<showMoney()<<std::endl
+             <<"Do you want to play another round ?\n(c - continue // e - exit)  : ";
+    std::cin >> choice;
     //  //////////////////////  Checking for _Choice  ///////////////////////////////////////
     while (_Choice != 'c' && _Choice != 'e') {
         std::cout << "! Enter the correct character !" << std::endl;
         std::cout << getName() << ", Do you want to play another round ?\n(c - continue // e - exit)  : ";
-        std::cin >> _Choice;
+        std::cin >> choice;
     }
-    if(_Choice=='e') {
+    if(choice=='e') {
         std::cout <<_Name << " leave the game!"<<std::endl;
-        _Money=0;
+        return 'e';
     }
+    return 'c';
 }

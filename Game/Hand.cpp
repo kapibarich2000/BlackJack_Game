@@ -12,11 +12,12 @@ int Hand::getCardsValue(){
         value += _inHand[i].getValue();
         if (_inHand[i].getValue() == 11) ace++; // counting of aces
     }
-    if (value>21 && ace>0){
+    while(value>21 && ace>0){
         value-=10;
         ace--;
     }
     return  value;
+
 }
 
 int Hand::getFirstCardValue(){

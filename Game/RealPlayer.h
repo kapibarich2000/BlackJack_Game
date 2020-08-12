@@ -12,6 +12,6 @@ public:
     void makeDouble();
     void makeInsuranceOrPayment() override;
     void makeMove() override;
-    void makeChoice_StayOrLeave() override;
+    char getChoice_StayOrLeave()const override;
 
 };

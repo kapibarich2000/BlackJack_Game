@@ -8,10 +8,10 @@
 class IPlayer {
 public:
     IPlayer();
-    const double showMoney() const;
-    const std::string getName();
-    const bool get_isBlackJack();
-    const bool get_isBust();
+    double showMoney() const;
+    std::string getName()const;
+    bool get_isBlackJack()const;
+    bool get_isBust()const;
     void set_isBust();
     void set_isBlackJack();
     virtual void clearHistory()=0;
@@ -26,7 +26,7 @@ protected:
 
 };
 
-// Daler does not have:
+// Dealer does not have:
 class IBlackJackPlayer: public IPlayer{
 public:
 
@@ -42,14 +42,14 @@ public:
     void setInsurance();
     void setDouble();
     virtual void setPrize(double n);
-    virtual const double getBet();
-    virtual const double getInsurance();
-    const char getChoice();
+    double getBet() const;
+    double getInsurance() const;
+    char getChoice() const;
 
-    virtual void makeChoice_StayOrLeave()=0;
+    virtual char getChoice_StayOrLeave()const=0 ;
 
 protected:
-    int _Insurance;
+    double _Insurance;
     char _Choice;
     double _Bet;
 };

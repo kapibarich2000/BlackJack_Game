@@ -8,17 +8,21 @@ IPlayer::IPlayer() {
     _isBust=false;
 }
 
-const double IPlayer::showMoney()const {
+double IPlayer::showMoney()const{
+    if (_Money==0){
+        std::cout<<_Name<<", you lost all your money"<<std::endl;
+        std::cout << "Player: " << _Name << " leave the game!\n"<<std::endl;
+    }
     return _Money;
 }
 
-const bool IPlayer::get_isBlackJack() {
+bool IPlayer::get_isBlackJack()const{
     return _isBlackJack;
 }
-const bool IPlayer::get_isBust() {
+bool IPlayer::get_isBust()const{
     return _isBust;
 }
-const std::string IPlayer::getName() {
+std::string IPlayer::getName()const{
     return _Name;
 }
 
@@ -47,15 +51,15 @@ void IBlackJackPlayer::clearHistory(){
     _Hand.ClearCards();
 }
 
-const char IBlackJackPlayer::getChoice() {
+char IBlackJackPlayer::getChoice() const {
     return _Choice;
 }
 
-const double IBlackJackPlayer::getBet(){
+double IBlackJackPlayer::getBet()const{
     return _Bet;
 }
 
-const double IBlackJackPlayer::getInsurance() {
+double IBlackJackPlayer::getInsurance()const{
     return _Insurance;
 }
 
@@ -74,9 +78,3 @@ void IBlackJackPlayer::setDouble(){
     _Money-=_Bet;
     _Bet+=_Bet;
 }
-
-
-
-// IDealer ________________________________________
-
-

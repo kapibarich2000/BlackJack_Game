@@ -117,9 +117,6 @@ BlackJack_Deck::BlackJack_Deck() {
 }
 
 
-
-
-
 int BlackJack_Deck::size(){
     return _Deck_of_cards.size();
 }

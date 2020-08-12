@@ -66,7 +66,7 @@ void  start_SinglePlayer_Game(){
 
     BlackJackGame game;
 
-    game.addPlayers(new BlackJack_RealPlayer);
+    game.addPlayers(new BlackJack_RealPlayer); // Нужно очистить delete
 
     int number_of_AIPlayers;
     do {

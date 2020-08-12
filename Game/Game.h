@@ -12,7 +12,6 @@ private:
     std::vector<IBlackJackPlayer*> _Players;
     BlackJack_DeckPile _DeckPile;
     BlackJack_Dealer _Dealer;
-    std::vector<std::string> _VectorToDeletePlayers;  // Stores the Names of players to delete //
 
 
 public:
@@ -22,5 +21,4 @@ public:
     void updateDeckPile();
     void check_to_deletePlayers();
     void addPlayers(IBlackJackPlayer * human_player);
-    void addAiPlayers();
 };

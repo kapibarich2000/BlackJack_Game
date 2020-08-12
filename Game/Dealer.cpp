@@ -309,12 +309,6 @@ void BlackJack_Dealer::startNewRound() {
        this->makePayments();
 }
 
-void BlackJack_Dealer::ask_aboutContinuing(IBlackJackPlayer *Player) {
-
-    std::cout<<"\n"<<Player->getName()<<", you have:"<<Player->showMoney()<<std::endl
-             <<"Do you want to play another round ?\n(c - continue // e - exit)  : ";
-    Player->makeChoice_StayOrLeave();
-}
 
 void BlackJack_Dealer::makePayments() {
     for (int i = 0; i < _Players->size(); ++i) {
@@ -328,5 +322,3 @@ void BlackJack_Dealer::makePayments() {
     }
     this->clearHistory();
 }
-
-
