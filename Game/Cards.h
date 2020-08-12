@@ -8,12 +8,12 @@ private:
     int eValue;
     int eSuit;
 public:
-    int getValue();
-    std::string getName();
+    int getValue()const;
+    std::string getName()const;
 
-    Card(int Value, int Suit): eValue(Value), eSuit(Suit){};
+    Card(int Value, int Suit);
 
-    Card(): eValue(0), eSuit(0){};
+    Card();
 };
 
 class BlackJack_Deck{

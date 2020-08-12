@@ -27,7 +27,13 @@ enum class eSuit{
 };
 
 
-int Card::getValue(){
+
+Card::Card(int Value, int Suit): eValue(Value), eSuit(Suit){};
+
+Card::Card(): eValue(0), eSuit(0){};
+
+
+int Card::getValue()const{
     if (eValue <=8){
         return eValue + 2;
     }
@@ -39,7 +45,7 @@ int Card::getValue(){
     }
 }
 
-std::string Card::getName() {
+std::string Card::getName()const {
     std::string Name = "";
     switch (eValue)
     {
@@ -123,7 +129,6 @@ int BlackJack_Deck::size(){
 
 
 void BlackJack_Deck::Refresh() { //  Fischer-Yates Shuffle
-
         std::srand(time(NULL));
         int j;
         Card TempCard;
@@ -142,13 +147,15 @@ Card BlackJack_Deck::pop() {
 }
 
 BlackJack_DeckPile::BlackJack_DeckPile(int number_of_decks) {
-    for (int k = 0; k < number_of_decks; k++)
+    // number_of_decks-1   Because the parent constructor is already creating a deck(with 52 cards)
+    std::cout<<"Important: "<<_Deck_of_cards.size();
+    for (int k = 0; k < number_of_decks-1; k++)
     {
-        for (size_t i = 0; i <= 12; i++)
+        for (int i = 0; i <= 12; i++)
         {
-            for (size_t j = 0; j <= 3; j++)
+            for (int j = 0; j <= 3; j++)
             {
-                _Deck_of_cards.push_back(Card(i, j));
+                _Deck_of_cards.push_back(Card(i,j));
             }
         }
     }
