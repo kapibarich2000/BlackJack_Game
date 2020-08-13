@@ -1,15 +1,15 @@
 #include "AIPlayer.h"
+#include <UsefulFunctions.h>
 
 BlackJack_AIPlayer::BlackJack_AIPlayer() {
-    std::cout<<"Enter the AIPlayer's name : ";
+    std::cout<<"Enter the AIPlayer's name :";
     std::cin>>_Name;
     _Name=_Name+"_AI";
     while (1){
-        std::cout<<"How much money($) it has? : ";
-        std::cin>>_Money;
-        if (std::cin.fail()) { // To prevent the user from entering a letter
-            std::cin.clear();
-            std::cin.ignore(32767, '\n');
+        std::cout<<"How much money($) it has? :";
+        _Money=EnterInt();
+        if (_Money<20) {
+            std::cout<<"Need more money (>20) for AI to play the BlackJack\n";
             continue;
         }
         break;

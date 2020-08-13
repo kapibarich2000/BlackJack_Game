@@ -3,6 +3,7 @@
 
 #define number_of_decks_in_DeckPile 4
 
+
 void BlackJackGame::addPlayers(IBlackJackPlayer * player) {
     _Players.push_back(player);
 }
@@ -39,3 +40,5 @@ void BlackJackGame::startGame() {
         if (_Players.empty()||_Dealer.showMoney()==0) break;
     }
 }
+
+

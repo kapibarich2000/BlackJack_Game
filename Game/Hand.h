@@ -10,13 +10,11 @@ public:
 
     void setCard(Card card);
 
-    int getFirstCardValue();
-    int getCardsValue();
 
-    void showFirstCardsName();
-    void showCardsName();
-    void showFirstCardsValue();
-    void showCardsValue();
+    std::string getFirstCardsName() const;
+    void showCardsName() const;
+    int getFirstCardValue() const;
+    int getCardsValue();
     void ClearCards();
     int getNumberOfCards();
 

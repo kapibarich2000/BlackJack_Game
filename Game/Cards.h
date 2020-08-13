@@ -3,7 +3,30 @@
 #include <vector>
 #include <string>
 
+
 class Card {
+public:
+    enum enValue {
+        Two, // 0
+        Three,//1
+        Four,//2
+        Five,//3
+        Six,    // 4
+        Seven,
+        Eight,
+        Nine,
+        Ten, // 8
+        Jack,
+        Queen,
+        King,
+        Ace, // 12
+    };
+    enum enSuit{
+        Diamonds, // 0
+        Hearts,
+        Spades,
+        Club // 3
+    };
 private:
     int eValue;
     int eSuit;
@@ -12,8 +35,10 @@ public:
     std::string getName()const;
 
     Card(int Value, int Suit);
-
+    Card(enValue Value, enSuit Suit);
     Card();
+
+
 };
 
 class BlackJack_Deck{

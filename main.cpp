@@ -6,9 +6,11 @@
 # define maxPlayers 15
 
 // Future additions:
-// AI Player
-// Make bet: 0,5 \ 1 \ 5 \ 10 \ 20 \ 50 \ 100
+
 // Multiplayer
+// GUI
+// Make bet: 0,5 \ 1 \ 5 \ 10 \ 20 \ 50 \ 100
+
 
 
 void showWelcomingSpeech(){
@@ -93,7 +95,7 @@ int main() {
     std::cout<<"SinglePlayer: 1\n"
                 <<"Cooperative: 2\n"
                 <<"Multiplayer: 3\n"
-                <<"Please enter a game mode: ";
+                <<"Please enter a game mode:";
     std::cin>>Selection_of_games;
     switch (Selection_of_games) {
         case 1:
@@ -108,5 +110,8 @@ int main() {
         default:
             break;
     }
+
+    std::cout<<"\nAll the best!\n";
+
     return 0;
 }

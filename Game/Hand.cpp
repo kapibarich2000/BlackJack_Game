@@ -17,39 +17,21 @@ int Hand::getCardsValue(){
         ace--;
     }
     return  value;
-
 }
 
-int Hand::getFirstCardValue(){
-    return _inHand[0].getValue();
-}
-
-
-void Hand::showCardsName() {
+void Hand::showCardsName() const{
     for (int i = 0; i < _inHand.size(); ++i) {
         std::cout<<this->_inHand[i].getName()<<", ";
     }
 }
-void Hand::showFirstCardsName() {
-   std::cout<<this->_inHand[0].getName()<<"  ";
+std::string Hand::getFirstCardsName() const{
+    return this->_inHand[0].getName(); //<<"  "
 }
 
 
-void Hand::showFirstCardsValue() {
-        std::cout<<this->_inHand[0].getValue();
+int Hand::getFirstCardValue() const{
+    return _inHand[0].getValue();
 }
-void Hand::showCardsValue() {
-    for (int i = 0; i < _inHand.size(); ++i) {
-        std::cout << this->_inHand[i].getName() << ", ";
-    }
-}
-// Ivan1 have: Ten Hearts, Two Hearts, Ace Hearts, Ace Spades,
-//(24)
-//Ivan1 - have bust !
-
-// Omg  Something wrong!
-
-
 
 void Hand::ClearCards() {
     _inHand.clear();

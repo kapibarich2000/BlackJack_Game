@@ -20,7 +20,7 @@ void BlackJack_Dealer::setDeckPile(BlackJack_DeckPile* DeckPile){
 
 void BlackJack_Dealer::allowMakeBets(){
     this->showMoney();
-    std::cout<<"Dealer have: "<<this->showMoney()<<"$\n\n";
+    std::cout<<"Dealer have:"<<this->showMoney()<<"$\n\n";
 
     for (int i = 0; i < _Players->size(); ++i) {
         std::cout << _Players->at(i)->getName() << " make a Bet" << std::endl;
@@ -146,9 +146,9 @@ void BlackJack_Dealer::startNewRound() {
 // ////////////////////////////////   Displaying cards on hands    /////////////////////////////////////////////////////
 
     std::cout<<"Dealer have: ";
-    this->_Hand.showFirstCardsName();
+    std::cout<<this->_Hand.getFirstCardsName();
     std::cout<<"   *   "<<"(";
-    this->_Hand.showFirstCardsValue();
+    std::cout<<this->_Hand.getFirstCardValue();
     std::cout<<")"<<"\n\n";
     std::cout <<"__________________" << std::endl;
     Sleep(1000); // time delay

@@ -3,33 +3,12 @@
 #include "Cards.h"
 #include <ctime>
 
-enum class eValue {
-    Two, // 0
-    Three,//1
-    Four,//2
-    Five,//3
-    Six,    // 4
-    Seven,
-    Eight,
-    Nine,
-    Ten, // 8
-    Jack,
-    Queen,
-    King,
-    Ace, // 12
-};
 
-enum class eSuit{
-    Diamonds, // 0
-    Hearts,
-    Spades,
-    Club // 3
-};
 
 
 
 Card::Card(int Value, int Suit): eValue(Value), eSuit(Suit){};
-
+Card::Card(Card::enValue Value, Card::enSuit Suit): eValue(Value), eSuit(Suit){};
 Card::Card(): eValue(0), eSuit(0){};
 
 
@@ -112,6 +91,7 @@ std::string Card::getName()const {
     return Name;
 }
 
+
 BlackJack_Deck::BlackJack_Deck() {
     for (size_t i = 0; i <= 12; i++)
     {
@@ -148,7 +128,6 @@ Card BlackJack_Deck::pop() {
 
 BlackJack_DeckPile::BlackJack_DeckPile(int number_of_decks) {
     // number_of_decks-1   Because the parent constructor is already creating a deck(with 52 cards)
-    std::cout<<"Important: "<<_Deck_of_cards.size();
     for (int k = 0; k < number_of_decks-1; k++)
     {
         for (int i = 0; i <= 12; i++)

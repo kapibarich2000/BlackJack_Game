@@ -3,7 +3,7 @@
 
 int EnterInt() {
     int number;
-    while (1) {
+    while (true) {
         std::cin >> number;
         if (std::cin.fail()) { // Checking for entering a number
             std::cin.clear();
