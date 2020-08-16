@@ -10,7 +10,7 @@ TEST(Hand, setCard){
         hand.setCard(Card());
     }
     // Assert
-    std::cout<<"The setCard method must add one object Card at a time to the container\nUse the method 10 times:\n";
+    std::cout<<"1) The setCard method must add one object Card at a time to the container\n";
     EXPECT_EQ(hand.getNumberOfCards(),10);
     EXPECT_TRUE(hand.getFirstCardValue()); //check: is it Card ?
 }
@@ -51,7 +51,7 @@ TEST(Hand, getCardsValue){
     // //////////// Act
 
     // //////////// Assert
-    std::cout<<"Calculates card points correctly:\n";
+    std::cout<<"2) Calculates card points correctly\n";
     EXPECT_EQ(hand1.getCardsValue(),21);
     EXPECT_EQ(hand2.getCardsValue(),21);
     EXPECT_EQ(hand3.getCardsValue(),20);
@@ -59,9 +59,4 @@ TEST(Hand, getCardsValue){
     EXPECT_LT(hand4.getCardsValue(),21);
 
 
-}
-
-int main(int argc, char** argv) {
-    testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
 }

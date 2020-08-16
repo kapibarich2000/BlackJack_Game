@@ -23,7 +23,7 @@ TEST(Card, getValue){
     }
 
     // Assert
-    std::cout<<"The total points of a full deck of cards without jokers must be equal to 380\n";
+    std::cout<<"\n1) The total points of a full deck of cards without jokers must be equal to 380";
     EXPECT_EQ(counter,380);
 }
 
@@ -32,7 +32,7 @@ TEST(BlackJack_Deck, Constructor){
     BlackJack_Deck deckPile;
     // Act
     // Assert
-    std::cout<<"The new deck must contain 52 cards:\n";
+    std::cout<<"2) The new deck must contain 52 cards\n";
     EXPECT_EQ(deckPile.size(),52);
 }
 
@@ -45,9 +45,9 @@ TEST(BlackJack_Deck, Pop){
         card=deckPile.pop();
     }
     // Assert
-    std::cout<<"1) After executing pop () 52 times, the container must be empty:\n";
+    std::cout<<"3.1) After executing pop () 52 times, the container must be empty\n";
     EXPECT_EQ(deckPile.size(),0);
-    std::cout<<"2) pop () returns an object of the Card class\n";
+    std::cout<<"3.2) pop () returns an object of the Card class";
     EXPECT_TRUE(card.getValue());
 }
 
@@ -56,13 +56,7 @@ TEST(BlackJack_DeckPile, Constructor){
     BlackJack_DeckPile deckPile(4);
     // Act
     // Assert
-    std::cout<<"If I pass 4 to the Deck constructor, then created a DeckPile with 208 cards:\n";
+    std::cout<<"4) If I pass 4 to the Deck constructor, then created a DeckPile with 208 cards\n";
     EXPECT_EQ(deckPile.size(),208);
     EXPECT_TRUE(deckPile.pop().getValue());
-}
-
-
-int main(int argc, char** argv) {
-    testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
 }
