@@ -7,16 +7,16 @@
 
 
 
-Card::Card(int Value, int Suit): eValue(Value), eSuit(Suit){};
-Card::Card(Card::enValue Value, Card::enSuit Suit): eValue(Value), eSuit(Suit){};
-Card::Card(): eValue(0), eSuit(0){};
+Card::Card(int Value, int Suit): _value(Value), _suit(Suit){};
+Card::Card(Card::enValue eValue, Card::enSuit eSuit): _value(eValue), _suit(eSuit){};
+Card::Card(): _value(0), _suit(0){};
 
 
 int Card::getValue()const{
-    if (eValue <=8){
-        return eValue + 2;
+    if (_value <=8){
+        return _value + 2;
     }
-    else if (eValue ==12){
+    else if (_value ==12){
         return 11;
     }
     else{
@@ -26,7 +26,7 @@ int Card::getValue()const{
 
 std::string Card::getName()const {
     std::string Name = "";
-    switch (eValue)
+    switch (_value)
     {
         case (0):
             Name += "Two ";
@@ -71,7 +71,7 @@ std::string Card::getName()const {
             break;
     }
 
-    switch (eSuit)
+    switch (_suit)
     {
         case 0:
             Name += "Diamonds";

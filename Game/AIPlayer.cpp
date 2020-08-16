@@ -3,12 +3,12 @@
 
 BlackJack_AIPlayer::BlackJack_AIPlayer() {
     std::cout<<"Enter the AIPlayer's name :";
-    std::cin>>_Name;
-    _Name=_Name+"_AI";
+    std::cin>>_name;
+    _name=_name+"_AI";
     while (1){
         std::cout<<"How much money($) it has? :";
-        _Money=EnterInt();
-        if (_Money<20) {
+        _money=EnterInt();
+        if (_money<20) {
             std::cout<<"Need more money (>20) for AI to play the BlackJack\n";
             continue;
         }
@@ -18,20 +18,20 @@ BlackJack_AIPlayer::BlackJack_AIPlayer() {
 }
 
 void BlackJack_AIPlayer::makeBet() {
-    std::cout<<_Name<<", you have: "<<_Money<<"$"<<std::endl;
-    int bet = _Money/100*15;
+    std::cout<<_name<<", you have: "<<_money<<"$"<<std::endl;
+    int bet = _money/100*15;
     while (bet%5!=0){
         bet++;
     }
-    _Bet=bet;
-    std::cout << getName()<<"'s Bet: "<<_Bet<<"$\n";
-    _Money-=_Bet;
+    _bet=bet;
+    std::cout << getName()<<"'s Bet: "<<_bet<<"$\n";
+    _money-=_bet;
 }
 
 void BlackJack_AIPlayer::makeDouble() {
-    if ((_Money>=_Bet/2)&&(_Hand.getCardsValue()==10||_Hand.getCardsValue()==11)){
+    if ((_money>=_bet/2)&&(_hand.getCardsValue()==10||_hand.getCardsValue()==11)){
         std::cout << getName()<<" chose Double\n";
-        _Choice='d';
+        _choice='d';
         setDouble();
     }
     else{
@@ -44,18 +44,18 @@ void BlackJack_AIPlayer::makeDouble() {
 void BlackJack_AIPlayer::makeInsuranceOrPayment() {
     if (this->_isBlackJack) {
             std::cout << getName()<<" chose Payment\n";
-            _Choice='p';
+            _choice='p';
     }
     else{
-        if (this->_Money >= this->getBet() / 2) {
-            if (_Hand.getCardsValue()==20||_Hand.getCardsValue()==19){
+        if (this->_money >= this->getBet() / 2) {
+            if (_hand.getCardsValue()==20||_hand.getCardsValue()==19){
                 std::cout << getName()<<" chose Insurance\n";
-                _Choice='i';
+                _choice='i';
                 setInsurance();
             }
             else{
                 std::cout << getName()<<" chose Stand\n";
-                _Choice='s';
+                _choice='s';
             }
 
         }
@@ -64,19 +64,19 @@ void BlackJack_AIPlayer::makeInsuranceOrPayment() {
 }
 
 void BlackJack_AIPlayer::makeMove() {
-    if (_Hand.getCardsValue()<17){
+    if (_hand.getCardsValue()<17){
         std::cout << getName()<<" chose Hit\n";
-        _Choice='h';
+        _choice='h';
     }
     else{
         std::cout << getName()<<" chose Stand\n";
-        _Choice='s';
+        _choice='s';
     }
 }
 
 char BlackJack_AIPlayer::getChoice_StayOrLeave()const {
     // Play to win
-    if (_Money<20){
+    if (_money<20){
         std::cout << getName()<<" chose Exit\n";
         return'e';
     }

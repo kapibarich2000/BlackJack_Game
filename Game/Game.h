@@ -9,9 +9,9 @@ class BlackJackGame{
 
 private:
 
-    std::vector<IBlackJackPlayer*> _Players;
-    BlackJack_DeckPile _DeckPile;
-    BlackJack_Dealer _Dealer;
+    std::vector<IBlackJackPlayer*> _players;
+    BlackJack_DeckPile _deckPile;
+    BlackJack_Dealer _dealer;
 
 
 public:

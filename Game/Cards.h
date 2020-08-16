@@ -28,14 +28,14 @@ public:
         Club // 3
     };
 private:
-    int eValue;
-    int eSuit;
+    int _value;
+    int _suit;
 public:
     int getValue()const;
     std::string getName()const;
 
     Card(int Value, int Suit);
-    Card(enValue Value, enSuit Suit);
+    Card(enValue eValue, enSuit eSuit);
     Card();
 
 

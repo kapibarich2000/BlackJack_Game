@@ -2,18 +2,18 @@
 
 // IPlayer   ________________________________________
 IPlayer::IPlayer() {
-    _Name="";
-    _Money=0;
+    _name="";
+    _money=0;
     _isBlackJack=false;
     _isBust=false;
 }
 
 double IPlayer::showMoney()const{
-    if (_Money==0){
-        std::cout<<_Name<<", you lost all your money"<<std::endl;
-        std::cout << "Player: " << _Name << " leave the game!\n"<<std::endl;
+    if (_money==0){
+        std::cout<<_name<<", you lost all your money"<<std::endl;
+        std::cout << "Player: " << _name << " leave the game!\n"<<std::endl;
     }
-    return _Money;
+    return _money;
 }
 
 bool IPlayer::get_isBlackJack()const{
@@ -23,7 +23,7 @@ bool IPlayer::get_isBust()const{
     return _isBust;
 }
 std::string IPlayer::getName()const{
-    return _Name;
+    return _name;
 }
 
 void IPlayer::set_isBust() {
@@ -38,43 +38,43 @@ void IPlayer::set_isBlackJack() {
 // IBlackJackPlayer   ________________________________________
 
 IBlackJackPlayer::IBlackJackPlayer() {
-    _Insurance=0;
-    _Choice='c';
-    _Bet=0;
+    _insurance=0;
+    _choice='c';
+    _bet=0;
 }
 
 void IBlackJackPlayer::clearHistory(){
-    _Insurance=0;
+    _insurance=0;
     _isBlackJack= false;
     _isBust= false;
-    _Choice='c';
-    _Hand.ClearCards();
+    _choice='c';
+    _hand.ClearCards();
 }
 
 char IBlackJackPlayer::getChoice() const {
-    return _Choice;
+    return _choice;
 }
 
 double IBlackJackPlayer::getBet()const{
-    return _Bet;
+    return _bet;
 }
 
 double IBlackJackPlayer::getInsurance()const{
-    return _Insurance;
+    return _insurance;
 }
 
 void IBlackJackPlayer::setPrize(double n) {
-    _Money+=n;
+    _money+=n;
 }
 
 void IBlackJackPlayer::setInsurance() {
-        _Insurance = _Bet/2;
-        _Money-=_Insurance;
-        std::cout<<_Name<<", you set an insurance bet: "<<_Insurance<<"\n\n";
+        _insurance = _bet/2;
+        _money-=_insurance;
+        std::cout<<_name<<", you set an insurance bet: "<<_insurance<<"\n\n";
 }
 
 void IBlackJackPlayer::setDouble(){
-    std::cout<<_Name<<", you made a double - add another "<<_Bet<<"$"<<" to the bet "<<std::endl;
-    _Money-=_Bet;
-    _Bet+=_Bet;
+    std::cout<<_name<<", you made a double - add another "<<_bet<<"$"<<" to the bet "<<std::endl;
+    _money-=_bet;
+    _bet+=_bet;
 }

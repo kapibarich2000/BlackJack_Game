@@ -16,11 +16,11 @@ public:
     void set_isBlackJack();
     virtual void clearHistory()=0;
 
-    Hand _Hand;
+    Hand _hand;
 
 protected:
-    double _Money;
-    std::string _Name;
+    double _money;
+    std::string _name;
     bool _isBlackJack;
     bool _isBust;
 
@@ -49,9 +49,9 @@ public:
     virtual char getChoice_StayOrLeave()const=0 ;
 
 protected:
-    double _Insurance;
-    char _Choice;
-    double _Bet;
+    double _insurance;
+    char _choice;
+    double _bet;
 };
 
 class IDealer{
@@ -59,6 +59,6 @@ class IDealer{
 public:
 
 protected:
-    BlackJack_DeckPile* _DeckPile;
-    std::vector<IBlackJackPlayer*>* _Players;
+    BlackJack_DeckPile* _deckPile;
+    std::vector<IBlackJackPlayer*>* _players;
 };
