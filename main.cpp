@@ -1,9 +1,9 @@
 #include <iostream>
 #include <Game.h>
-#include <AIPlayer.h> // Не должно быть здесь !
 #include <UsefulFunctions.h>
+#include <memory>
 
-# define maxPlayers 15
+# define maxPlayers 7
 
 // Future additions:
 
@@ -17,12 +17,39 @@ void showWelcomingSpeech(){
     std::cout<<"---------------------------------------------\n";
 
     std::cout<<"\n\n////  Welcome to the honest world of cards :) ////\n"<<
-             "////  BlacK Jack, created by kapibarich2000, greet you ////\n\n";
+             "////  BlackJack, created by kapibarich2000, greet you ////\n\n";
 
     std::cout<<"Please Enter for control:\nh - for hit, s - for stand, d - for double "<<
              "e - for exit, c - for continue, i - for insurance, p - for payment\n\n";
 }
 
+void  start_SinglePlayer_Game(){
+
+    showWelcomingSpeech();
+
+    BlackJackGame game;
+
+    game.addPlayers(std::make_shared<BlackJack_RealPlayer>());
+
+    int number_of_AIPlayers;
+    do {
+        std::cout << "\nHow many AI players will play? :";
+        number_of_AIPlayers = EnterInt();
+        if (1+number_of_AIPlayers>maxPlayers) {
+            std::cout << "The game didn't support so many participants !\n\n";
+            continue;
+        }
+        break;
+    }
+    while (true);
+
+    for (int i = 0; i < number_of_AIPlayers; ++i) {
+        game.addPlayers(std::make_shared<BlackJack_AIPlayer>());
+        std::cout<<std::endl; // For beauty
+    }
+
+    game.startGame();
+}
 
 void  start_Cooperative_Game(){
 
@@ -41,7 +68,7 @@ void  start_Cooperative_Game(){
         }
         break;
     }
-    while (1);
+    while (true);
 
     std::cout<<std::endl;
 
@@ -49,41 +76,14 @@ void  start_Cooperative_Game(){
 
     // Add humanPlayers
     for (int i = 0; i < number_of_humanPlayers; ++i) {
-        game.addPlayers(new BlackJack_RealPlayer);
+        game.addPlayers(std::make_shared<BlackJack_RealPlayer>());
+        std::cout<<std::endl; // For beauty
     }
 
 
     for (int i = 0; i < number_of_AIPlayers; ++i) {
-        game.addPlayers(new BlackJack_AIPlayer);
-    }
-
-
-    game.startGame();
-
-}
-
-void  start_SinglePlayer_Game(){
-
-    showWelcomingSpeech();
-
-    BlackJackGame game;
-
-    game.addPlayers(new BlackJack_RealPlayer); // Нужно очистить delete
-
-    int number_of_AIPlayers;
-    do {
-        std::cout << "\nHow many AI players will play? :";
-        number_of_AIPlayers = EnterInt();
-        if (1+number_of_AIPlayers>maxPlayers) {
-            std::cout << "The game didn't support so many participants !\n\n";
-            continue;
-        }
-        break;
-    }
-    while (1);
-
-    for (int i = 0; i < number_of_AIPlayers; ++i) {
-        game.addPlayers(new BlackJack_AIPlayer);
+        game.addPlayers(std::make_shared<BlackJack_AIPlayer>());
+        std::cout<<std::endl; // For beauty
     }
 
     game.startGame();

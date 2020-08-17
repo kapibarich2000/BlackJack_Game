@@ -1,15 +1,15 @@
 #pragma once
-#include <Cards.h>
 #include <Dealer.h>
-#include <Hand.h>
 #include <RealPlayer.h>
+#include <AIPlayer.h>
+#include <memory>
 #include <vector>
 
 class BlackJackGame{
 
 private:
 
-    std::vector<IBlackJackPlayer*> _players;
+    std::vector<std::shared_ptr<IBlackJackPlayer>> _players;
     BlackJack_DeckPile _deckPile;
     BlackJack_Dealer _dealer;
 
@@ -20,5 +20,5 @@ public:
 
     void updateDeckPile();
     void check_to_deletePlayers();
-    void addPlayers(IBlackJackPlayer * human_player);
+    void addPlayers(const std::shared_ptr<IBlackJackPlayer>& player);
 };

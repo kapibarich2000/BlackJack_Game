@@ -10,13 +10,14 @@ public:
 
     void setCard(Card card);
 
-
     std::string getFirstCardsName() const;
-    void showCardsName() const;
     int getFirstCardValue() const;
     int getCardsValue();
-    void ClearCards();
     int getNumberOfCards();
+
+    void showCardsName() const;
+
+    void ClearCards();
 
 protected:
    std::vector<Card> _inHand;

@@ -3,18 +3,24 @@
 #include <Hand.h>
 #include <string>
 #include <vector>
+#include <memory>
 
 
 class IPlayer {
 public:
     IPlayer();
-    double showMoney() const;
+
+    double getBankSize() const;
     std::string getName()const;
     bool get_isBlackJack()const;
     bool get_isBust()const;
+
     void set_isBust();
     void set_isBlackJack();
+    void setPrize(double n);
     virtual void clearHistory()=0;
+
+    void showAllCards();
 
     Hand _hand;
 
@@ -32,7 +38,7 @@ public:
 
     IBlackJackPlayer();
 
-    void clearHistory() override; // Перенести в IPlayer
+    void clearHistory() override;
 
     virtual void makeBet()=0;
     virtual void makeDouble()=0;
@@ -41,12 +47,12 @@ public:
 
     void setInsurance();
     void setDouble();
-    virtual void setPrize(double n);
     double getBet() const;
-    double getInsurance() const;
+    double getInsurance () const;
     char getChoice() const;
-
     virtual char getChoice_StayOrLeave()const=0 ;
+
+    double takeInsurance();
 
 protected:
     double _insurance;
@@ -60,5 +66,5 @@ public:
 
 protected:
     BlackJack_DeckPile* _deckPile;
-    std::vector<IBlackJackPlayer*>* _players;
+    std::vector<std::shared_ptr<IBlackJackPlayer>>* _players;
 };

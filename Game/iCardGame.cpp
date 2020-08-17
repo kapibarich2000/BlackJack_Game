@@ -8,14 +8,13 @@ IPlayer::IPlayer() {
     _isBust=false;
 }
 
-double IPlayer::showMoney()const{
+double IPlayer::getBankSize()const{
     if (_money==0){
         std::cout<<_name<<", you lost all your money"<<std::endl;
         std::cout << "Player: " << _name << " leave the game!\n"<<std::endl;
     }
     return _money;
 }
-
 bool IPlayer::get_isBlackJack()const{
     return _isBlackJack;
 }
@@ -30,9 +29,20 @@ void IPlayer::set_isBust() {
     std::cout<<getName()<<" - have bust !"<<std::endl;
     _isBust= true;
 }
-
 void IPlayer::set_isBlackJack() {
     _isBlackJack=true;
+}
+void IPlayer::setPrize(double n) {
+    _money+=n;
+}
+
+void IPlayer::showAllCards() {
+    std::cout << this->getName() << " have:  ";
+    this->_hand.showCardsName();
+    std::cout << "(";
+    std::cout << this->_hand.getCardsValue();
+    std::cout << ")\n";
+    std::cout <<"__________________" << std::endl;
 }
 
 // IBlackJackPlayer   ________________________________________
@@ -59,13 +69,16 @@ double IBlackJackPlayer::getBet()const{
     return _bet;
 }
 
-double IBlackJackPlayer::getInsurance()const{
+double IBlackJackPlayer::getInsurance() const {
     return _insurance;
 }
 
-void IBlackJackPlayer::setPrize(double n) {
-    _money+=n;
+double IBlackJackPlayer::takeInsurance(){
+    double insurance = _insurance;
+    _insurance=0;
+    return insurance;
 }
+
 
 void IBlackJackPlayer::setInsurance() {
         _insurance = _bet/2;
@@ -78,3 +91,5 @@ void IBlackJackPlayer::setDouble(){
     _money-=_bet;
     _bet+=_bet;
 }
+
+

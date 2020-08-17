@@ -1,9 +1,9 @@
 #include "Hand.h"
-#include <ctime>
 
 void Hand::setCard(Card card) {
     _inHand.push_back(card);
 }
+
 
 int Hand::getCardsValue(){
     int value=0;
@@ -19,25 +19,28 @@ int Hand::getCardsValue(){
     return  value;
 }
 
-void Hand::showCardsName() const{
-    for (int i = 0; i < _inHand.size(); ++i) {
-        std::cout<<this->_inHand[i].getName()<<", ";
-    }
-}
 std::string Hand::getFirstCardsName() const{
     return this->_inHand[0].getName(); //<<"  "
 }
-
 
 int Hand::getFirstCardValue() const{
     return _inHand[0].getValue();
 }
 
+int Hand::getNumberOfCards() {
+    return _inHand.size();
+}
+
+
+void Hand::showCardsName() const{
+    for (int i = 0; i < _inHand.size(); ++i) {
+        std::cout<<this->_inHand[i].getName()<<", ";
+    }
+}
+
+
 void Hand::ClearCards() {
     _inHand.clear();
 }
 
-int Hand::getNumberOfCards() {
-    return _inHand.size();
-}
 

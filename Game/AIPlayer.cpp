@@ -1,3 +1,4 @@
+#include <iostream>
 #include "AIPlayer.h"
 #include <UsefulFunctions.h>
 
@@ -5,7 +6,7 @@ BlackJack_AIPlayer::BlackJack_AIPlayer() {
     std::cout<<"Enter the AIPlayer's name :";
     std::cin>>_name;
     _name=_name+"_AI";
-    while (1){
+    while (true){
         std::cout<<"How much money($) it has? :";
         _money=EnterInt();
         if (_money<20) {
@@ -14,7 +15,6 @@ BlackJack_AIPlayer::BlackJack_AIPlayer() {
         }
         break;
     }
-    std::cout<<std::endl; // For beauty
 }
 
 void BlackJack_AIPlayer::makeBet() {
@@ -39,8 +39,6 @@ void BlackJack_AIPlayer::makeDouble() {
     }
 }
 
-// 1 Ivan 100 1 John 100
-
 void BlackJack_AIPlayer::makeInsuranceOrPayment() {
     if (this->_isBlackJack) {
             std::cout << getName()<<" chose Payment\n";
@@ -57,7 +55,7 @@ void BlackJack_AIPlayer::makeInsuranceOrPayment() {
                 std::cout << getName()<<" chose Stand\n";
                 _choice='s';
             }
-
+            if (this->getChoice() == 'i') this->setInsurance();
         }
     }
     if (getChoice()=='i') setInsurance();
@@ -67,12 +65,12 @@ void BlackJack_AIPlayer::makeMove() {
     if (_hand.getCardsValue()<17){
         std::cout << getName()<<" chose Hit\n";
         _choice='h';
-    }
-    else{
+    }else{
         std::cout << getName()<<" chose Stand\n";
         _choice='s';
     }
 }
+
 
 char BlackJack_AIPlayer::getChoice_StayOrLeave()const {
     // Play to win

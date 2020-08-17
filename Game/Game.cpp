@@ -4,7 +4,7 @@
 #define number_of_decks_in_DeckPile 4
 
 
-void BlackJackGame::addPlayers(IBlackJackPlayer * player) {
+void BlackJackGame::addPlayers(const std::shared_ptr<IBlackJackPlayer>& player) {
     _players.push_back(player);
 }
 
@@ -13,8 +13,8 @@ void BlackJackGame::addPlayers(IBlackJackPlayer * player) {
 
 void BlackJackGame::check_to_deletePlayers(){
     auto newEnd = std::remove_if(_players.begin(),_players.end(),
-                                  [](const IBlackJackPlayer* p){
-                                      return p->showMoney()==0||p->getChoice_StayOrLeave()=='e';} );
+                                  [](const std::shared_ptr<IBlackJackPlayer>& p){
+                                      return p->getBankSize()==0||p->getChoice_StayOrLeave()=='e';} );
     _players.erase(newEnd,_players.end());
 }
 
@@ -37,7 +37,7 @@ void BlackJackGame::startGame() {
         }
 
         // Ending
-        if (_players.empty()||_dealer.showMoney()==0) break;
+        if (_players.empty()||_dealer.getBankSize()==0) break;
     }
 }
 
