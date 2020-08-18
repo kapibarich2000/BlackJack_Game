@@ -1,4 +1,5 @@
 #include "iCardGame.h"
+#include <windows.h>
 
 // IPlayer   ________________________________________
 IPlayer::IPlayer() {
@@ -32,8 +33,8 @@ void IPlayer::set_isBust() {
 void IPlayer::set_isBlackJack() {
     _isBlackJack=true;
 }
-void IPlayer::setPrize(double n) {
-    _money+=n;
+void IPlayer::setPrize(double money) {
+    _money+=money;
 }
 
 void IPlayer::showAllCards() {
@@ -104,4 +105,27 @@ void IDealer::showFirsCard() {
     std::cout<<this->_hand.getFirstCardValue();
     std::cout<<")"<<"\n\n";
     std::cout <<"__________________" << std::endl;
+}
+
+void IDealer::takeInsuranceFrom(const std::shared_ptr<IBlackJackPlayer> &Player) {
+    this->setPrize(Player->giveInsurance());
+}
+
+void IDealer::checkSecondCard() {
+        std::cout<<"Dealer check your second card:"<<std::endl;
+        Sleep(1500); // time delay
+        if (this->_hand.getCardsValue()==21){
+            std::cout<<"Dealer have BlackJack\n"<<std::endl;
+            this->set_isBlackJack();
+        }
+        else{
+            std::cout<<"Dealer dont't has BlackJack\n\n";
+            Sleep(1500); // time delay
+        }
+}
+
+
+void IDealer::setDeckPile(BlackJack_DeckPile* DeckPile){
+    this->_deckPile=DeckPile;
+    _deckPile->Refresh();
 }

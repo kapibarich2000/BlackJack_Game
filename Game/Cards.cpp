@@ -3,9 +3,7 @@
 #include "Cards.h"
 #include <ctime>
 
-
-
-
+// Card
 
 Card::Card(int Value, int Suit): _value(Value), _suit(Suit){};
 Card::Card(Card::enValue eValue, Card::enSuit eSuit): _value(eValue), _suit(eSuit){};
@@ -91,38 +89,28 @@ std::string Card::getName()const {
     return Name;
 }
 
+// BlackJack_DeckPile
 
-BlackJack_Deck::BlackJack_Deck() {
-    for (size_t i = 0; i <= 12; i++)
-    {
-        for (int j = 0; j <= 3; j++)
-        {
-            _Deck_of_cards.push_back(Card(i, j));
-        }
-    }
+int BlackJack_DeckPile::size(){
+    return _deck_of_cards.size();
 }
 
 
-int BlackJack_Deck::size(){
-    return _Deck_of_cards.size();
-}
-
-
-void BlackJack_Deck::Refresh() { //  Fischer-Yates Shuffle
+void BlackJack_DeckPile::Refresh() { //  Fischer-Yates Shuffle
         std::srand(time(NULL));
         int j;
         Card TempCard;
-        for (int i = _Deck_of_cards.size()-1; i > 1; i--)    {
+        for (int i = _deck_of_cards.size()-1; i > 1; i--)    {
             j = std::rand() % (i + 1);
-            TempCard=_Deck_of_cards[j];
-            _Deck_of_cards[j]=_Deck_of_cards[i];
-            _Deck_of_cards[i]=TempCard;
+            TempCard=_deck_of_cards[j];
+            _deck_of_cards[j]=_deck_of_cards[i];
+            _deck_of_cards[i]=TempCard;
         }
 }
 
-Card BlackJack_Deck::pop() {
-    Card card = _Deck_of_cards[_Deck_of_cards.size()-1];
-    _Deck_of_cards.pop_back();
+Card BlackJack_DeckPile::pop() {
+    Card card = _deck_of_cards[_deck_of_cards.size()-1];
+    _deck_of_cards.pop_back();
     return card;
 }
 
@@ -134,7 +122,7 @@ BlackJack_DeckPile::BlackJack_DeckPile(int number_of_decks) {
         {
             for (int j = 0; j <= 3; j++)
             {
-                _Deck_of_cards.push_back(Card(i,j));
+                _deck_of_cards.emplace_back(Card(i,j));
             }
         }
     }

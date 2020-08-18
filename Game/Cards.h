@@ -41,18 +41,13 @@ public:
 
 };
 
-class BlackJack_Deck{
-protected:
-    std::vector<Card> _Deck_of_cards;
-public:
-    void  Refresh();
-    BlackJack_Deck();
-    int size();
-    Card pop();
-};
-
-
-class  BlackJack_DeckPile: public BlackJack_Deck{
+class  BlackJack_DeckPile{
 public:
     BlackJack_DeckPile(int number_of_decks);
+
+    void  Refresh();
+    int size();
+    Card pop();
+private:
+    std::vector<Card> _deck_of_cards;
 };

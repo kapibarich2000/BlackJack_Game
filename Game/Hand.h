@@ -14,12 +14,11 @@ public:
     std::string getFirstCardsName() const;
     int getFirstCardValue() const;
     int getCardsValue();
-    int getNumberOfCards();
 
     void showCardsName() const;
 
     void ClearCards();
 
-protected:
+private:
    std::vector<Card> _inHand{};
 };

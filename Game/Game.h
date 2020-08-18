@@ -18,8 +18,9 @@ public:
     ~BlackJackGame()=default;
 
     void startGame();
+    void addPlayer(const std::shared_ptr<IBlackJackPlayer>& player);
 
+private:
     void updateDeckPile();
     void check_to_deletePlayers();
-    void addPlayers(const std::shared_ptr<IBlackJackPlayer>& player);
 };

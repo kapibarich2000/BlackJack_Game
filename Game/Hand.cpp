@@ -27,9 +27,6 @@ int Hand::getFirstCardValue() const{
     return _inHand[0].getValue();
 }
 
-int Hand::getNumberOfCards() {
-    return _inHand.size();
-}
 
 
 void Hand::showCardsName() const{

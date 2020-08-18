@@ -18,7 +18,7 @@ public:
 
     void set_isBust();
     void set_isBlackJack();
-    void setPrize(double n);
+    void setPrize(double money);
     virtual void clearHistory();
 
     void showAllCards();
@@ -66,7 +66,14 @@ class IDealer: public IPlayer{
 public:
     IDealer() = default;
     ~IDealer() = default;
+
+    virtual void startNewRound()=0;
+
+    void takeInsuranceFrom(const std::shared_ptr<IBlackJackPlayer>& Player);
+    void checkSecondCard();
+    void setDeckPile(BlackJack_DeckPile* DeckPile);
     void showFirsCard();
+
 protected:
      BlackJack_DeckPile* _deckPile{}; //Initialization with an empty value
     std::vector<std::shared_ptr<IBlackJackPlayer>>* _players{};

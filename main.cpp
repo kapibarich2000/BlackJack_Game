@@ -29,7 +29,7 @@ void  start_SinglePlayer_Game(){
 
     BlackJackGame game;
 
-    game.addPlayers(std::make_shared<BlackJack_RealPlayer>());
+    game.addPlayer(std::make_shared<BlackJack_RealPlayer>());
 
     int number_of_AIPlayers;
     do {
@@ -44,7 +44,7 @@ void  start_SinglePlayer_Game(){
     while (true);
 
     for (int i = 0; i < number_of_AIPlayers; ++i) {
-        game.addPlayers(std::make_shared<BlackJack_AIPlayer>());
+        game.addPlayer(std::make_shared<BlackJack_AIPlayer>());
         std::cout<<std::endl; // For beauty
     }
 
@@ -76,13 +76,13 @@ void  start_Cooperative_Game(){
 
     // Add humanPlayers
     for (int i = 0; i < number_of_humanPlayers; ++i) {
-        game.addPlayers(std::make_shared<BlackJack_RealPlayer>());
+        game.addPlayer(std::make_shared<BlackJack_RealPlayer>());
         std::cout<<std::endl; // For beauty
     }
 
 
     for (int i = 0; i < number_of_AIPlayers; ++i) {
-        game.addPlayers(std::make_shared<BlackJack_AIPlayer>());
+        game.addPlayer(std::make_shared<BlackJack_AIPlayer>());
         std::cout<<std::endl; // For beauty
     }
 

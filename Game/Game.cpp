@@ -4,7 +4,7 @@
 #define number_of_decks_in_DeckPile 4
 
 
-void BlackJackGame::addPlayers(const std::shared_ptr<IBlackJackPlayer>& player) {
+void BlackJackGame::addPlayer(const std::shared_ptr<IBlackJackPlayer>& player) {
     _players.push_back(player);
 }
 

@@ -47,10 +47,6 @@ void BlackJack_Dealer::startNewRound() {
 }
 
 
-void BlackJack_Dealer::setDeckPile(BlackJack_DeckPile* DeckPile){
-    this->_deckPile=DeckPile;
-    _deckPile->Refresh();
-}
 
 void BlackJack_Dealer::allowMakeBets(){
     this->getBankSize();
@@ -132,22 +128,6 @@ void BlackJack_Dealer::additionalDistribution() {
     }
 }
 
-void BlackJack_Dealer::checkSecondCard() {
-    std::cout<<"Dealer check your second card:"<<std::endl;
-    Sleep(1500); // time delay
-    if (this->_hand.getCardsValue()==21){
-        std::cout<<"Dealer have BlackJack\n"<<std::endl;
-        this->set_isBlackJack();
-    }
-    else{
-        std::cout<<"Dealer dont't has BlackJack\n\n";
-        Sleep(1500); // time delay
-    }
-}
-
-void BlackJack_Dealer::TakeInsuranceFrom(const std::shared_ptr<IBlackJackPlayer>& Player) {
-    this->setPrize(Player->giveInsurance());
-}
 
 void BlackJack_Dealer::giveMove() {
     //  If Dealer have BlackJack with first card 10 -> Need go to payment
@@ -183,7 +163,7 @@ void BlackJack_Dealer::giveMove() {
                 if (player->getChoice() == 'i') {
                     std::cout << player->getName()
                               << ", your insurance bet burned out !\n\n";
-                    this->TakeInsuranceFrom(player);
+                    this->takeInsuranceFrom(player);
                 }
                 // And then, players make another choice
                 if (!(player->get_isBlackJack())) {
@@ -286,11 +266,3 @@ void BlackJack_Dealer::makePayments() {
     }
     this->clearHistory();
 }
-
-
-
-
-
-
-
-
