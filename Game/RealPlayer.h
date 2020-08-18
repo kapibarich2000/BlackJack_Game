@@ -5,6 +5,7 @@ class BlackJack_RealPlayer: public IBlackJackPlayer {
 public:
 
     BlackJack_RealPlayer();
+    ~BlackJack_RealPlayer()=default;
 
     void makeBet() override;
     void makeDouble()override;

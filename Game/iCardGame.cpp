@@ -45,6 +45,12 @@ void IPlayer::showAllCards() {
     std::cout <<"__________________" << std::endl;
 }
 
+void IPlayer::clearHistory() {
+    _isBlackJack=false;
+    _isBust=false;
+    _hand.ClearCards();
+}
+
 // IBlackJackPlayer   ________________________________________
 
 IBlackJackPlayer::IBlackJackPlayer() {
@@ -53,27 +59,16 @@ IBlackJackPlayer::IBlackJackPlayer() {
     _bet=0;
 }
 
-void IBlackJackPlayer::clearHistory(){
-    _insurance=0;
-    _isBlackJack= false;
-    _isBust= false;
-    _choice='c';
-    _hand.ClearCards();
-}
-
 char IBlackJackPlayer::getChoice() const {
     return _choice;
 }
-
 double IBlackJackPlayer::getBet()const{
     return _bet;
 }
-
 double IBlackJackPlayer::getInsurance() const {
     return _insurance;
 }
-
-double IBlackJackPlayer::takeInsurance(){
+double IBlackJackPlayer::giveInsurance(){
     double insurance = _insurance;
     _insurance=0;
     return insurance;
@@ -85,7 +80,6 @@ void IBlackJackPlayer::setInsurance() {
         _money-=_insurance;
         std::cout<<_name<<", you set an insurance bet: "<<_insurance<<"\n\n";
 }
-
 void IBlackJackPlayer::setDouble(){
     std::cout<<_name<<", you made a double - add another "<<_bet<<"$"<<" to the bet "<<std::endl;
     _money-=_bet;
@@ -93,3 +87,21 @@ void IBlackJackPlayer::setDouble(){
 }
 
 
+void IBlackJackPlayer::clearHistory(){
+    _insurance=0;
+    _isBlackJack= false;
+    _isBust= false;
+    _choice='c';
+    _hand.ClearCards();
+}
+
+// IBlackJackPlayer   ________________________________________
+
+void IDealer::showFirsCard() {
+    std::cout<<"Dealer have: ";
+    std::cout<<this->_hand.getFirstCardsName();
+    std::cout<<"   *   "<<"(";
+    std::cout<<this->_hand.getFirstCardValue();
+    std::cout<<")"<<"\n\n";
+    std::cout <<"__________________" << std::endl;
+}

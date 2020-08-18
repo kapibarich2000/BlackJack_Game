@@ -8,9 +8,9 @@ void Hand::setCard(Card card) {
 int Hand::getCardsValue(){
     int value=0;
     int ace=0;
-    for (int i = 0; i < _inHand.size(); ++i) {
-        value += _inHand[i].getValue();
-        if (_inHand[i].getValue() == 11) ace++; // counting of aces
+    for (auto & i : _inHand) {
+        value += i.getValue();
+        if (i.getValue() == 11) ace++; // counting of aces
     }
     while(value>21 && ace>0){
         value-=10;

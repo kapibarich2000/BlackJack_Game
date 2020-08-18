@@ -96,9 +96,9 @@ char BlackJack_RealPlayer::getChoice_StayOrLeave() const {
     char choice;
     while(true){
         std::cout<<"\n"<< getName()<<", you have:"<<getBankSize()<<std::endl
-                 <<"Do you want to play another round ?\n(c - continue // e - exit)  :";
+                 <<"Do you want to play another round ?\n(c - continue // e - exit):";
         std::cin >> choice;
-        if (choice != 'c' && _choice != 'e') continue;
+        if (choice != 'c' && choice != 'e') continue;
 
         break;
     }

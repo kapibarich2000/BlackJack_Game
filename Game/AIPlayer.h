@@ -4,6 +4,7 @@
 class BlackJack_AIPlayer: public IBlackJackPlayer {
 public:
     BlackJack_AIPlayer();
+    ~BlackJack_AIPlayer()=default;
 
     void makeBet() override;
     void makeDouble() override;

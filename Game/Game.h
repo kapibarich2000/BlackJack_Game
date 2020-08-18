@@ -13,9 +13,10 @@ private:
     BlackJack_DeckPile _deckPile;
     BlackJack_Dealer _dealer;
 
-
 public:
     BlackJackGame();
+    ~BlackJackGame()=default;
+
     void startGame();
 
     void updateDeckPile();

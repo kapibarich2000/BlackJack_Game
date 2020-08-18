@@ -7,6 +7,7 @@ class Hand{
 public:
 
     Hand() = default;
+    ~Hand() = default;
 
     void setCard(Card card);
 
@@ -20,5 +21,5 @@ public:
     void ClearCards();
 
 protected:
-   std::vector<Card> _inHand;
+   std::vector<Card> _inHand{};
 };

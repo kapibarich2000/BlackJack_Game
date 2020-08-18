@@ -9,6 +9,7 @@
 class IPlayer {
 public:
     IPlayer();
+    ~IPlayer()=default;
 
     double getBankSize() const;
     std::string getName()const;
@@ -18,7 +19,7 @@ public:
     void set_isBust();
     void set_isBlackJack();
     void setPrize(double n);
-    virtual void clearHistory()=0;
+    virtual void clearHistory();
 
     void showAllCards();
 
@@ -37,6 +38,7 @@ class IBlackJackPlayer: public IPlayer{
 public:
 
     IBlackJackPlayer();
+    ~IBlackJackPlayer() = default;
 
     void clearHistory() override;
 
@@ -52,7 +54,7 @@ public:
     char getChoice() const;
     virtual char getChoice_StayOrLeave()const=0 ;
 
-    double takeInsurance();
+    double giveInsurance();
 
 protected:
     double _insurance;
@@ -60,11 +62,12 @@ protected:
     double _bet;
 };
 
-class IDealer{
-
+class IDealer: public IPlayer{
 public:
-
+    IDealer() = default;
+    ~IDealer() = default;
+    void showFirsCard();
 protected:
-    BlackJack_DeckPile* _deckPile;
-    std::vector<std::shared_ptr<IBlackJackPlayer>>* _players;
+     BlackJack_DeckPile* _deckPile{}; //Initialization with an empty value
+    std::vector<std::shared_ptr<IBlackJackPlayer>>* _players{};
 };

@@ -23,6 +23,7 @@ void BlackJack_Dealer::startNewRound() {
 // Displaying cards on hands
 
     this->showFirsCard();
+    Sleep(1000); // time delay
 
     for (auto & _player : *_players) {
         _player->showAllCards();
@@ -75,15 +76,6 @@ void BlackJack_Dealer::dealsCards() {
     this->_hand.setCard(_deckPile->pop());
 }
 
-void BlackJack_Dealer::showFirsCard() {
-    std::cout<<"Dealer have: ";
-    std::cout<<this->_hand.getFirstCardsName();
-    std::cout<<"   *   "<<"(";
-    std::cout<<this->_hand.getFirstCardValue();
-    std::cout<<")"<<"\n\n";
-    std::cout <<"__________________" << std::endl;
-    Sleep(1000); // time delay
-}
 
 void BlackJack_Dealer::additionalDistribution() {
     for ( auto & _player : *_players) {
@@ -153,8 +145,8 @@ void BlackJack_Dealer::checkSecondCard() {
     }
 }
 
-void BlackJack_Dealer::TakeInsuranceFrom(std::shared_ptr<IBlackJackPlayer> Player) {
-    this->setPrize(Player->takeInsurance());
+void BlackJack_Dealer::TakeInsuranceFrom(const std::shared_ptr<IBlackJackPlayer>& Player) {
+    this->setPrize(Player->giveInsurance());
 }
 
 void BlackJack_Dealer::giveMove() {
@@ -295,11 +287,8 @@ void BlackJack_Dealer::makePayments() {
     this->clearHistory();
 }
 
-void BlackJack_Dealer::clearHistory() {
-    _isBlackJack=false;
-    _isBust=false;
-    _hand.ClearCards();
-}
+
+
 
 
 

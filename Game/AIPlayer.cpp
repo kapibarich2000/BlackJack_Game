@@ -19,10 +19,13 @@ BlackJack_AIPlayer::BlackJack_AIPlayer() {
 
 void BlackJack_AIPlayer::makeBet() {
     std::cout<<_name<<", you have: "<<_money<<"$"<<std::endl;
-    int bet = _money/100*15;
+    int bet = (int)_money/100*15;
+
+    if (bet<5) bet = 5;
     while (bet%5!=0){
         bet++;
     }
+
     _bet=bet;
     std::cout << getName()<<"'s Bet: "<<_bet<<"$\n";
     _money-=_bet;
@@ -55,10 +58,8 @@ void BlackJack_AIPlayer::makeInsuranceOrPayment() {
                 std::cout << getName()<<" chose Stand\n";
                 _choice='s';
             }
-            if (this->getChoice() == 'i') this->setInsurance();
         }
     }
-    if (getChoice()=='i') setInsurance();
 }
 
 void BlackJack_AIPlayer::makeMove() {
@@ -73,10 +74,9 @@ void BlackJack_AIPlayer::makeMove() {
 
 
 char BlackJack_AIPlayer::getChoice_StayOrLeave()const {
-    // Play to win
     if (_money<20){
         std::cout << getName()<<" chose Exit\n";
-        return'e';
+        return 'e';
     }
     std::cout << getName()<<" chose Continue\n";
     return 's';
