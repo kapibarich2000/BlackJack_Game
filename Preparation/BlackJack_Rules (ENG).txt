@@ -1,0 +1,71 @@
+____________________________________________________________________________________________
+General rules: (WITHOUT Split feature)
+
+* The player's goal is to collect a combination of cards so that the amount of points will
+be higher, than the dealer's one, but no more than 21
+
+* Each card match to a certain number of points from 1 to 11.
+-- Cards up to ten "cost" according to their numerical value:
+		(two – 2, five-5 points, etc.)
+-- Picture cards – 10 points each.
+-- ACE can mean 1 or 11 (depending on which value gives the advantage).
+-- The suit, for determining the number of points, does not matter.
+
+* The size of a deck of Blackjack is played with four or three standard decks of 52 cards.
+These four decks are stacked into one large stack of cards (Shuz).
+
+* Number of players-from one to seven players can play Blackjack.
+
+* Double bets: then a player has received two cards, he can double his bet.
+If the player has made this decision, than he gets another card and finishes turn.
+____________________________________________________________________________________________
+Bets:
+
+* Before the dealer deals cards, each player must place a bet.
+
+* Insurance – if the dealer's first card is an ACE, the player can place an insurance bet.
+-- If the dealer's hidden card earns 21 points, the insurance rate is paid 2:1
+-- If the hidden card does not bring the dealer 21 points, the player loses the insurance bet.
+-- Usually the insurance rate is equal to half of the original rate, in this case,
+if the dealer has a BlackJack (21 points), the player remains at “their own”.
+____________________________________________________________________________________________
+Distribution of cards:
+
+ Starting from the first player, the dealer deals one card to each player
+the card is facing up so that the dealer gets last
+* Then the process is repeated with the only difference-the dealer
+puts his card face down.
+* The dealer's inverted card is called a hidden card.
+* The deals ends when each player (including the dealer) has TWO cards.
+! After the Distribution - the game started !
+____________________________________________________________________________________________
+Game process:
+
+* Depends on the dealer's open card.
+
+** If the open card is a ten or an ACE the dealer must check their hidden card
+- If both cards give him a total of 21 points [Blackjack], the game ends and starts payment
+
+* If player has 21 points, the game goes to the next player.
+
+If the player has less than 21 points, there are TWO possible OPTIONS:
+- Get another card or (Hit)
+- Stop (Stand)
+
+_____________________________________________________________________________________________
+Dealer actions:
+
+* MUST TAKE an additional card if the amount of card points in his hands is less than 17.
+* The dealer must STOP if the total number of cards in his hands is greater than or equal to 17.
+_____________________________________________________________________________________________
+Payment:
+
+- Players who take too many cards lose their bets.
+- Players who score less points than the dealer lose their bets.
+
+= Players who have scored the same number of points as the dealer “remain at their own".
+
++ Players who score more points than the dealer win amounts equal to their bets.
++ Players win amounts equal to three second bids. (i.e. put 5 got 12.5)
+, if their scored 21 points after the first distribution.
+_____________________________________________________________________________________________
